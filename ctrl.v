@@ -56,7 +56,7 @@ module Ctrl(jump,RegDst,Branch,MemR,Mem2R,MemW,RegW,Alusrc,EXTOp,Aluctrl,OpCode,
                         default:
                             begin
                                 assign RegW=0;
-                                assign Alusrc=`ALUOp_NOP;
+                                assign Aluctrl=`ALUOp_NOP;
                             end
                     endcase
                 end
@@ -101,7 +101,7 @@ module Ctrl(jump,RegDst,Branch,MemR,Mem2R,MemW,RegW,Alusrc,EXTOp,Aluctrl,OpCode,
                 end
             `INSTR_BEQ_OP:
                 begin
-                    assign jump=0;//不确定
+                    assign jump=0;
                     assign RegDst=0;
                     assign Branch=1;
                     assign MemR=0;
@@ -112,6 +112,7 @@ module Ctrl(jump,RegDst,Branch,MemR,Mem2R,MemW,RegW,Alusrc,EXTOp,Aluctrl,OpCode,
                     assign Aluctrl=`ALUOp_SUB;
                     assign EXTOp=`EXT_SIGNED;
                 end
+//补充第二阶段代码
             `INSTR_LUI_OP: 
                 begin 
                     assign jump=0;
@@ -122,8 +123,6 @@ module Ctrl(jump,RegDst,Branch,MemR,Mem2R,MemW,RegW,Alusrc,EXTOp,Aluctrl,OpCode,
                     assign MemW=0;
                     assign RegW=1;
                     assign Alusrc=1;
-                    assign Aluctrl=`ALUOp_SUB;
-                    assign EXTOp=`EXT_SIGNED;
 				    assign EXTOp = `EXT_HIGHPOS;
 				    assign Aluctrl = `ALUOp_OR;
 			end

@@ -1,8 +1,9 @@
 module mips();
    reg clk, rst;
-
+//C:/Users/lpdink/Desktop/code.txt
+//D:/appDate/QQrefile/testCode/Project1/Test_6_Instr.txt
    initial begin
-      $readmemh( "D:/appDate/QQrefile/testCode/signal6/Test_6_Instr.txt" , U_IM.imem ) ;
+      $readmemh( "C:/Users/lpdink/Desktop/code.txt" , U_IM.imem ) ;
       $monitor("PC = 0x%8X, IR = 0x%8X", U_PC.PC, instr ); 
       clk = 1 ;
       rst = 0 ;
@@ -97,7 +98,7 @@ module mips();
    alu U_alu (.A(RD1), .B(alu_b), .ALUOp(Aluctrl), .C(alu_c), .Zero(Zero));
    //DM
    assign dm_addr=alu_c[11:2];
-   dm_4k U_dm_4k( .addr(dm_addr), .din(RD2), .DMWr(MemW), .clk(clk), .dout(dm_dout),.dread(MemR) );
+   dm_4k U_dm_4k( .addr(dm_addr), .din(RD2), .DMWr(MemW), .clk(clk), .dout(dm_dout));//,.dread(MemR) );
    //CTRL
   	Ctrl U_Ctrl(.jump(jump),.RegDst(RegDst),.Branch(Branch),.MemR(MemR),.Mem2R(Mem2R)
 				,.MemW(MemW),.RegW(RegW),.Alusrc(Alusrc),.EXTOp(EXTOp),.Aluctrl(Aluctrl)
