@@ -17,6 +17,7 @@ module alu (A, B, ALUOp, C, Zero);
          `ALUOp_SUB:  C=A-B;
          `ALUOp_OR:   C=A|B;
          `ALUOp_AND:  C=A&B;
+         `ALUOp_SLT:  C=(A>B)?1:0;
        
          default:   ;
       endcase

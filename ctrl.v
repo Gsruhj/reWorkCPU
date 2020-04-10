@@ -7,7 +7,7 @@ module Ctrl(jump,RegDst,Branch,MemR,Mem2R,MemW,RegW,Alusrc,EXTOp,Aluctrl,OpCode,
     
     output reg jump;
     output reg RegDst;
-    output reg Branch;
+    output reg [1:0] Branch;
     output reg MemR;
     output reg Mem2R;
     output reg MemW;
@@ -21,7 +21,7 @@ module Ctrl(jump,RegDst,Branch,MemR,Mem2R,MemW,RegW,Alusrc,EXTOp,Aluctrl,OpCode,
         case(OpCode)
             `INSTR_RTYPE_OP:
                 begin
-                    assign Branch=0;
+                    assign Branch=2'b00;
                     assign jump=0;
                     assign Mem2R=0;
                     assign MemR=0;
@@ -64,7 +64,7 @@ module Ctrl(jump,RegDst,Branch,MemR,Mem2R,MemW,RegW,Alusrc,EXTOp,Aluctrl,OpCode,
                 begin
                     assign jump=0;
                     assign RegDst=1;
-                    assign Branch=0;
+                    assign Branch=2'b00;
                     assign MemR=0;
                     assign Mem2R=0;
                     assign MemW=0;
@@ -77,7 +77,7 @@ module Ctrl(jump,RegDst,Branch,MemR,Mem2R,MemW,RegW,Alusrc,EXTOp,Aluctrl,OpCode,
                 begin
                     assign jump=0;
                     assign RegDst=1;
-                    assign Branch=0;
+                    assign Branch=2'b00;
                     assign MemR=1;
                     assign Mem2R=1;
                     assign MemW=0;
@@ -90,7 +90,7 @@ module Ctrl(jump,RegDst,Branch,MemR,Mem2R,MemW,RegW,Alusrc,EXTOp,Aluctrl,OpCode,
                 begin
                     assign jump=0;
                     assign RegDst=1;
-                    assign Branch=0;
+                    assign Branch=2'b00;
                     assign MemR=0;
                     assign Mem2R=0;
                     assign MemW=1;
@@ -103,7 +103,7 @@ module Ctrl(jump,RegDst,Branch,MemR,Mem2R,MemW,RegW,Alusrc,EXTOp,Aluctrl,OpCode,
                 begin
                     assign jump=0;
                     assign RegDst=0;
-                    assign Branch=1;
+                    assign Branch=2'b01;
                     assign MemR=0;
                     assign Mem2R=0;
                     assign MemW=0;
@@ -117,7 +117,7 @@ module Ctrl(jump,RegDst,Branch,MemR,Mem2R,MemW,RegW,Alusrc,EXTOp,Aluctrl,OpCode,
                 begin 
                     assign jump=0;
                     assign RegDst=1;
-                    assign Branch=0;
+                    assign Branch=2'b00;
                     assign MemR=0;
                     assign Mem2R=0;
                     assign MemW=0;
@@ -125,7 +125,33 @@ module Ctrl(jump,RegDst,Branch,MemR,Mem2R,MemW,RegW,Alusrc,EXTOp,Aluctrl,OpCode,
                     assign Alusrc=1;
 				    assign EXTOp = `EXT_HIGHPOS;
 				    assign Aluctrl = `ALUOp_OR;
-			end
+			    end
+            `INSTR_SLTI_OP:
+                begin
+                    assign jump=0;
+                    assign RegDst=1;
+                    assign Branch=2'b00;
+                    assign MemR=0;
+                    assign Mem2R=0;
+                    assign MemW=0;
+                    assign RegW=1;
+                    assign Alusrc=1;
+                    assign EXTOp=`EXT_SIGNED;
+                    assign Aluctrl=`ALUOp_SLT;
+                end
+            `INSTR_BNE_OP:
+                begin
+                    assign jump=0;
+                    assign RegDst=0;
+                    assign Branch=2'b10;
+                    assign MemR=0;
+                    assign Mem2R=0;
+                    assign MemW=0;
+                    assign RegW=0;
+                    assign Alusrc=0;
+                    assign Aluctrl=`ALUOp_SUB;
+                    assign EXTOp=`EXT_SIGNED;
+                end
         endcase
     end
 endmodule

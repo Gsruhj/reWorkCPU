@@ -4,7 +4,7 @@ entity Ctrl is
     port(
         jump            : out    vl_logic;
         RegDst          : out    vl_logic;
-        Branch          : out    vl_logic;
+        Branch          : out    vl_logic_vector(1 downto 0);
         MemR            : out    vl_logic;
         Mem2R           : out    vl_logic;
         MemW            : out    vl_logic;

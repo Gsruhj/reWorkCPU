@@ -12,9 +12,9 @@ n@_opt
 Z3 OE;O;10.1a;51
 Z4 dC:\appdownloads\modelsim\win32
 T_opt1
-V9ZX97R]GN7zWVJIaE_nC`0
-04 5 4 work dm_4k fast 0
-=1-a85e4536875d-5e8c6fdb-1e8-7164
+V2kPO[M6=QIIh_Q6mFk^GL0
+04 2 4 work PC fast 0
+=1-a85e4536875d-5e907786-333-92f8
 R2
 n@_opt1
 R3
@@ -28,39 +28,39 @@ n@_opt2
 R3
 R4
 valu
-!i10b 1
 V=>>0zXZ86Y::F<Z7E=ozS2
 r1
-!s85 0
 31
-IIXNzbQfl9]fYCEa<E?jnz2
+I[n92]d`3^4OEnzOLdRDfP1
 Z5 dC:\appProjects\modelsimProject
-w1586525131
+w1586528622
 8C:\appProjects\modelsimProject\alu.v
 FC:\appProjects\modelsimProject\alu.v
 L0 2
 Z6 OE;L;10.1a;51
-!s90 -reportprogress|300|-work|work|-vopt|C:\appProjects\modelsimProject\alu.v|
 Z7 o-work work -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
-!s100 [SlfGm0Va9n;U<LGkmjVm2
-!s108 1586525136.115000
+!s90 -reportprogress|300|-work|work|-vopt|C:\appProjects\modelsimProject\alu.v|
+!s100 NojozS]CnAVDlRG^gd_B42
+!s108 1586528627.824000
 !s107 ctrl_encode_def.v|C:\appProjects\modelsimProject\alu.v|
+!i10b 1
+!s85 0
 vCtrl
-VnzVc@<9=NRSL3o@?<FAbM3
+VLjl0Nm6R`B7D0Mo:e>h821
 r1
 31
-I7Pg17n`k@CYm8Ql4OSPYh3
+IdmzBZY2QAWZf:e>1lzob12
 R5
-w1586521156
+w1586527734
 8C:\appProjects\modelsimProject\ctrl.v
 FC:\appProjects\modelsimProject\ctrl.v
 L0 4
 R6
 R7
 n@ctrl
-!s100 [Vko>>8[M;DI=XF2Vnm6F2
+!s100 SIFc@ONAn5PO9c11Am3?m2
 !s90 -reportprogress|300|-work|work|-vopt|C:\appProjects\modelsimProject\ctrl.v|
-!s108 1586524564.782000
+!s108 1586527917.302000
 !s107 instruction_def.v|ctrl_encode_def.v|C:\appProjects\modelsimProject\ctrl.v|
 !i10b 1
 !s85 0
@@ -78,7 +78,7 @@ R6
 R7
 !s100 jHcm41ag9NBjoV8IBKM1]0
 !s90 -reportprogress|300|-work|work|-vopt|C:\appProjects\modelsimProject\dm.v|
-!s108 1586524564.887000
+!s108 1586527917.409000
 !s107 C:\appProjects\modelsimProject\dm.v|
 !i10b 1
 !s85 0
@@ -97,7 +97,7 @@ R7
 n@e@x@t
 !s100 8;aj77?4i7;m12ODXGlB;2
 !s90 -reportprogress|300|-work|work|-vopt|C:/appProjects/modelsimProject/EXT.v|
-!s108 1586524564.950000
+!s108 1586527917.471000
 !s107 ctrl_encode_def.v|C:/appProjects/modelsimProject/EXT.v|
 !i10b 1
 !s85 0
@@ -115,7 +115,7 @@ R6
 R7
 !s100 QbzzX?AH4[k0hO9@SIH4G0
 !s90 -reportprogress|300|-work|work|-vopt|C:/appProjects/modelsimProject/im.v|
-!s108 1586524565.011000
+!s108 1586527917.540000
 !s107 C:/appProjects/modelsimProject/im.v|
 !i10b 1
 !s85 0
@@ -134,28 +134,28 @@ R7
 n@i@r
 !s100 b]^g]@P4P7mlABSlIUH080
 !s90 -reportprogress|300|-work|work|-vopt|C:/appProjects/modelsimProject/IR.v|
-!s108 1586524565.116000
+!s108 1586527917.653000
 !s107 C:/appProjects/modelsimProject/IR.v|
 !i10b 1
 !s85 0
 vmips
+!i10b 1
 VXXMLPNhMZgRT<hIE6`9Zl2
 r1
+!s85 0
 31
-I7obD1HA`zOSCDLhfVA5D32
+In1ZOQD6<HEPo754>JYPQb3
 R5
-w1586523683
+w1586528883
 8C:\appProjects\modelsimProject\mips.v
 FC:\appProjects\modelsimProject\mips.v
 L0 1
 R6
-R7
-!s100 1LYKS37fMSWP=1U]n9D6P2
 !s90 -reportprogress|300|-work|work|-vopt|C:\appProjects\modelsimProject\mips.v|
-!s108 1586524565.179000
+R7
+!s100 m8?I:Yh3^cXmXKRhb_^m40
+!s108 1586528893.716000
 !s107 C:\appProjects\modelsimProject\mips.v|
-!i10b 1
-!s85 0
 vmips_tb
 IXm[I:>KD5JPT:FM=Me9Pn1
 VHfL@J;=TiSmbe>@j83EoJ0
@@ -170,7 +170,7 @@ r1
 R7
 !s100 S7:9zD9_nln8Z4I__YCCU2
 !s90 -reportprogress|300|-work|work|-vopt|C:/appProjects/modelsimProject/mips_tb.v|
-!s108 1586524565.245000
+!s108 1586527917.790000
 !s107 C:/appProjects/modelsimProject/mips_tb.v|
 !i10b 1
 !s85 0
@@ -185,7 +185,7 @@ L0 71
 R6
 r1
 31
-Z11 !s108 1586524565.310000
+Z11 !s108 1586527917.857000
 Z12 !s107 C:/appProjects/modelsimProject/mux.v|
 Z13 !s90 -reportprogress|300|-work|work|-vopt|C:/appProjects/modelsimProject/mux.v|
 R7
@@ -250,19 +250,19 @@ vPC
 VzEEnUfoPQU8T73<bdM4Ol0
 r1
 31
-IMVQCNA1LF6@KH6k>0^N2c2
+I8loDNm5JGN28PDYU`03P?3
 R5
 w1586259875
-8C:/appProjects/modelsimProject/PC.v
-FC:/appProjects/modelsimProject/PC.v
+8C:\appProjects\modelsimProject\PC.v
+FC:\appProjects\modelsimProject\PC.v
 L0 1
 R6
 R7
 n@p@c
-!s100 bOW0fd=HVN7SIj?_3Ndb30
-!s90 -reportprogress|300|-work|work|-vopt|C:/appProjects/modelsimProject/PC.v|
-!s108 1586524565.421000
-!s107 C:/appProjects/modelsimProject/PC.v|
+!s100 M_U:6omG17SRcj3oUcU5k2
+!s90 -reportprogress|300|-work|work|-vopt|C:\appProjects\modelsimProject\PC.v|
+!s108 1586527917.969000
+!s107 C:\appProjects\modelsimProject\PC.v|
 !i10b 1
 !s85 0
 vRF
@@ -280,7 +280,7 @@ R7
 n@r@f
 !s100 2B__0KB?i@BSfARGNQWNJ1
 !s90 -reportprogress|300|-work|work|-vopt|C:/appProjects/modelsimProject/RF.v|
-!s108 1586524565.485000
+!s108 1586527918.032000
 !s107 C:/appProjects/modelsimProject/RF.v|
 !i10b 1
 !s85 0

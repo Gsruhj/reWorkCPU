@@ -59,7 +59,7 @@ module mips();
    //CTRL
    wire 		jump;						//指令跳转
 	wire 		RegDst;						
-	wire 		Branch;						//分支
+	wire[1:0] 		Branch;						//分支
 	wire 		MemR;						//读存储器
 	wire 		Mem2R;						//数据存储器到寄存器堆
 	wire 		MemW;						//写数据存储器
@@ -72,7 +72,25 @@ module mips();
    //mips_tb U_mips_tb();
    //PC：PCWr:input,branch有效且零信号有效为1，决定分支有效。NPC：input,由EXT传来的基于原PC的分支地址。PC：output,当前指令地址，传给im以读出指令。
    assign NPC=Imm32;
-   assign PCWr=((Branch&&Zero)==1)?1:0;
+   //if(Branch==2'b01&&Zero)assign PCWr=1;
+   //if(Branch==2'b10&&Zero==0)assign PCWr=1;
+   assign PCWr=(((Branch==2'b01&&Zero)||(Branch==2'b10&&Zero==0))==1)?1:0;
+   //assign PCWr=((Branch==2'b10&&Zero==0)==1)?1:0;
+   //else assign PCWr=0;
+   //assign PCWr=((Branch&&Zero)==1)?1:0;
+   /*
+   always@(Branch or Zero)
+      begin
+         case (Branch)
+            2'b00: if(Zero)PCWr=1;
+            2'b01: if(~Zero)PCWr=1;
+         default:  PCWr=0;
+         endcase
+      end
+*/
+
+
+
    PC U_PC (
       .clk(clk), .rst(rst), .PCWr(PCWr), .NPC(NPC), .PC(PC)
    ); 
