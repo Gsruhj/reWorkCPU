@@ -28,40 +28,40 @@ n@_opt2
 R3
 R4
 valu
+!i10b 1
 V=>>0zXZ86Y::F<Z7E=ozS2
 r1
+!s85 0
 31
-I[n92]d`3^4OEnzOLdRDfP1
+IFKi3F[V`ohc<6O2fV6YGe2
 Z5 dC:\appProjects\modelsimProject
-w1586528622
-8C:\appProjects\modelsimProject\alu.v
-FC:\appProjects\modelsimProject\alu.v
+w1586578080
+8C:/appProjects/modelsimProject/alu.v
+FC:/appProjects/modelsimProject/alu.v
 L0 2
 Z6 OE;L;10.1a;51
 Z7 o-work work -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
-!s90 -reportprogress|300|-work|work|-vopt|C:\appProjects\modelsimProject\alu.v|
-!s100 NojozS]CnAVDlRG^gd_B42
-!s108 1586528627.824000
-!s107 ctrl_encode_def.v|C:\appProjects\modelsimProject\alu.v|
-!i10b 1
-!s85 0
+!s100 b0_4LznDb^=:9doL^>PR:0
+!s108 1586578094.905000
+!s107 ctrl_encode_def.v|C:/appProjects/modelsimProject/alu.v|
+!s90 -reportprogress|300|-work|work|-vopt|C:/appProjects/modelsimProject/alu.v|
 vCtrl
 VLjl0Nm6R`B7D0Mo:e>h821
 r1
 31
-IdmzBZY2QAWZf:e>1lzob12
+IT@;O3WaCOoOZFD25AK_YV3
 R5
-w1586527734
-8C:\appProjects\modelsimProject\ctrl.v
-FC:\appProjects\modelsimProject\ctrl.v
+w1586576554
+8C:/appProjects/modelsimProject/ctrl.v
+FC:/appProjects/modelsimProject/ctrl.v
 L0 4
 R6
 R7
 n@ctrl
-!s100 SIFc@ONAn5PO9c11Am3?m2
-!s90 -reportprogress|300|-work|work|-vopt|C:\appProjects\modelsimProject\ctrl.v|
-!s108 1586527917.302000
-!s107 instruction_def.v|ctrl_encode_def.v|C:\appProjects\modelsimProject\ctrl.v|
+!s100 fFSX@Jm<gO9=ao=5IFdh@2
+!s108 1586576687.112000
+!s107 instruction_def.v|ctrl_encode_def.v|C:/appProjects/modelsimProject/ctrl.v|
+!s90 -reportprogress|300|-work|work|-vopt|C:/appProjects/modelsimProject/ctrl.v|
 !i10b 1
 !s85 0
 vdm_4k
@@ -139,10 +139,8 @@ n@i@r
 !i10b 1
 !s85 0
 vmips
-!i10b 1
 VXXMLPNhMZgRT<hIE6`9Zl2
 r1
-!s85 0
 31
 In1ZOQD6<HEPo754>JYPQb3
 R5
@@ -151,11 +149,13 @@ w1586528883
 FC:\appProjects\modelsimProject\mips.v
 L0 1
 R6
-!s90 -reportprogress|300|-work|work|-vopt|C:\appProjects\modelsimProject\mips.v|
 R7
+!s90 -reportprogress|300|-work|work|-vopt|C:\appProjects\modelsimProject\mips.v|
 !s100 m8?I:Yh3^cXmXKRhb_^m40
 !s108 1586528893.716000
 !s107 C:\appProjects\modelsimProject\mips.v|
+!i10b 1
+!s85 0
 vmips_tb
 IXm[I:>KD5JPT:FM=Me9Pn1
 VHfL@J;=TiSmbe>@j83EoJ0

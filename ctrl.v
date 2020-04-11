@@ -53,6 +53,11 @@ module Ctrl(jump,RegDst,Branch,MemR,Mem2R,MemW,RegW,Alusrc,EXTOp,Aluctrl,OpCode,
                                 assign RegW=1;
                                 assign Aluctrl=`ALUOp_SUB;
                             end
+                        `INSTR_SLT_FUNCT:
+                            begin
+                                assign RegW=1;
+                                assign Aluctrl=`ALUOp_SLT;
+                            end
                         default:
                             begin
                                 assign RegW=0;
