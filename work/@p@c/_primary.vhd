@@ -4,8 +4,9 @@ entity PC is
     port(
         clk             : in     vl_logic;
         rst             : in     vl_logic;
-        PCWr            : in     vl_logic;
+        PCWr            : in     vl_logic_vector(1 downto 0);
         NPC             : in     vl_logic_vector(31 downto 0);
-        PC              : out    vl_logic_vector(31 downto 0)
+        PC              : out    vl_logic_vector(31 downto 0);
+        IMM             : in     vl_logic_vector(25 downto 0)
     );
 end PC;

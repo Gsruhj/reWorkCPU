@@ -39,7 +39,7 @@ Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
 Top level modules:
 	mips
 
-} {} {}} C:/appProjects/modelsimProject/dm.v {1 {vlog -work work -vopt {C:\appProjects\modelsimProject\dm.v}
+} {} {}} C:/appProjects/modelsimProject/dm.v {1 {vlog -work work -vopt C:/appProjects/modelsimProject/dm.v
 Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
 -- Compiling module dm_4k
 
@@ -52,6 +52,13 @@ Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
 
 Top level modules:
 	EXT
+
+} {} {}} C:/appProjects/modelsimProject/alu.v {1 {vlog -work work -vopt C:/appProjects/modelsimProject/alu.v
+Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
+-- Compiling module alu
+
+Top level modules:
+	alu
 
 } {} {}} D:/appDate/QQrefile/????/Project1/IR.v {1 {vlog -work work -vopt D:/appDate/QQrefile/????/Project1/IR.v
 Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
@@ -79,7 +86,7 @@ Top level modules:
 	mux8
 	mux16
 
-} {} {}} C:/appProjects/modelsimProject/PC.v {1 {vlog -work work -vopt {C:\appProjects\modelsimProject\PC.v}
+} {} {}} C:/appProjects/modelsimProject/PC.v {1 {vlog -work work -vopt C:/appProjects/modelsimProject/PC.v
 Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
 -- Compiling module PC
 
@@ -112,7 +119,7 @@ Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
 } {} {}} D:/appDate/QQrefile/????/Project1/instruction_def.v {1 {vlog -work work -vopt D:/appDate/QQrefile/????/Project1/instruction_def.v
 Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
 
-} {} {}} C:/appProjects/modelsimProject/RF.v {1 {vlog -work work -vopt C:/appProjects/modelsimProject/RF.v
+} {} {}} C:/appProjects/modelsimProject/RF.v {1 {vlog -work work -vopt {C:\appProjects\modelsimProject\RF.v}
 Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
 -- Compiling module RF
 

@@ -1,11 +1,11 @@
 //`include "global_def.v"
-module RF( A1, A2, A3, WD, clk, RFWr, RD1, RD2 );
+module RF( A1, A2, A3, WD, clk, RFWr, RD1, RD2,ra );
     
    input  [4:0]  A1, A2, A3;
    input  [31:0] WD;
    input         clk;
    input         RFWr;
-   output [31:0] RD1, RD2;
+   output [31:0] RD1, RD2,ra;
    
    reg [31:0] rf[31:0];
    
@@ -29,6 +29,7 @@ module RF( A1, A2, A3, WD, clk, RFWr, RD1, RD2 );
    
    assign RD1 = (A1 == 0) ? 32'd0 : rf[A1];
    assign RD2 = (A2 == 0) ? 32'd0 : rf[A2];
+   assign ra=rf[5'b11111];
    
 endmodule
 

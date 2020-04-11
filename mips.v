@@ -18,15 +18,17 @@ module mips();
    //PC
    wire [31:0] NPC;
    wire [31:0] PC;
-   wire PCWr;
+   reg [1:0] PCWr;
+   
    //assign PCWr=((Branch&&Zero)==1)?1:0;
 
    //EXT
    wire [15:0] Imm16;
    wire [31:0] Imm32;
+   wire [25:0] IMM;
 
    //IM
-   wire [4:0] rs,rt,rd;
+   wire [4:0] rs,rt,rd,shamt;
    wire [5:0] Op,Funct;
    wire [31:0] im_dout;
    wire [31:0] instr;
@@ -36,8 +38,9 @@ module mips();
    assign rs = instr[25:21];
    assign rt = instr[20:16];
    assign rd = instr[15:11];
+   assign shamt=instr[10:6];
    assign Imm16 = instr[15:0];
-  // assign IMM = instr[25:0];
+   assign IMM = instr[25:0];//支持J指令。
 
    //RF
    //assign A3=(RegDst==1)?instr[20:16]:instr[15:11];
@@ -45,6 +48,7 @@ module mips();
    //assign WD= (Mem2R==1)?dm_dout:alu_c;
    wire  [31:0] RD1;
    wire [31:0] RD2;
+   wire [31:0] ra;//用于读出32号寄存器存储的PC值
    wire [4:0] A3;
 
    //ALU
@@ -57,7 +61,7 @@ module mips();
    wire [9:0] dm_addr;
    //assign dm_addr=alu_c[11:2];
    //CTRL
-   wire 		jump;						//指令跳转
+   wire[1:0] 		jump;						//指令跳转
 	wire 		RegDst;						
 	wire[1:0] 		Branch;						//分支
 	wire 		MemR;						//读存储器
@@ -71,10 +75,16 @@ module mips();
 
    //mips_tb U_mips_tb();
    //PC：PCWr:input,branch有效且零信号有效为1，决定分支有效。NPC：input,由EXT传来的基于原PC的分支地址。PC：output,当前指令地址，传给im以读出指令。
-   assign NPC=Imm32;
+   assign NPC=(jump==2'b11)?ra:Imm32;
    //if(Branch==2'b01&&Zero)assign PCWr=1;
    //if(Branch==2'b10&&Zero==0)assign PCWr=1;
-   assign PCWr=(((Branch==2'b01&&Zero)||(Branch==2'b10&&Zero==0))==1)?1:0;
+   //assign PCWr=(((Branch==2'b01&&Zero)||(Branch==2'b10&&Zero==0))==1)?2'b01:2'b00;
+   always@(Branch or Zero or jump)begin
+   if((Branch==2'b01&&Zero)||(Branch==2'b10&&Zero==0)) PCWr=2'b01;
+   else if(Branch==2'b11&&(jump==2'b01||jump==2'b10)) PCWr=2'b10;
+   else if(jump==2'b11)PCWr=2'b11;
+   else  PCWr=2'b00;
+   end
    //assign PCWr=((Branch==2'b10&&Zero==0)==1)?1:0;
    //else assign PCWr=0;
    //assign PCWr=((Branch&&Zero)==1)?1:0;
@@ -92,7 +102,7 @@ module mips();
 
 
    PC U_PC (
-      .clk(clk), .rst(rst), .PCWr(PCWr), .NPC(NPC), .PC(PC)
+      .clk(clk), .rst(rst), .PCWr(PCWr), .NPC(NPC), .PC(PC),.IMM(IMM)
    ); 
    //IM
    im_4k U_IM ( 
@@ -100,11 +110,11 @@ module mips();
    );
    
    //RF
-   assign A3=(RegDst==1)?instr[20:16]:instr[15:11];
-   assign WD= (Mem2R==1)?dm_dout:alu_c;
+   assign A3=(jump==2'b10)?5'b11111:((RegDst==1)?instr[20:16]:instr[15:11]);//如果jump决定jal可用，则直接访问寄存器32号。否则进行instr的判断。
+   assign WD=(jump==2'b10)?PC+4:( (Mem2R==1)?dm_dout:alu_c);
    RF U_RF (
       .A1(rs), .A2(rt), .A3(A3), .WD(WD), .clk(clk), 
-      .RFWr(RegW), .RD1(RD1), .RD2(RD2)
+      .RFWr(RegW), .RD1(RD1), .RD2(RD2),.ra(ra)
    );
 
    //EXT
@@ -113,7 +123,7 @@ module mips();
 
    //ALU
    assign alu_b = (Alusrc==1)?Imm32:RD2;
-   alu U_alu (.A(RD1), .B(alu_b), .ALUOp(Aluctrl), .C(alu_c), .Zero(Zero));
+   alu U_alu (.A(RD1), .B(alu_b), .ALUOp(Aluctrl), .C(alu_c), .Zero(Zero),.shamt(shamt));
    //DM
    assign dm_addr=alu_c[11:2];
    dm_4k U_dm_4k( .addr(dm_addr), .din(RD2), .DMWr(MemW), .clk(clk), .dout(dm_dout));//,.dread(MemR) );
