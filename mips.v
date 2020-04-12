@@ -3,7 +3,7 @@ module mips();
 //C:/Users/lpdink/Desktop/code.txt
 //D:/appDate/QQrefile/testCode/Project1/Test_6_Instr.txt
    initial begin
-      $readmemh( "C:/Users/lpdink/Desktop/code.txt" , U_IM.imem ) ;
+      $readmemh( "thirdcode.txt" , U_IM.imem ) ;
       $monitor("PC = 0x%8X, IR = 0x%8X", U_PC.PC, instr ); 
       clk = 1 ;
       rst = 0 ;

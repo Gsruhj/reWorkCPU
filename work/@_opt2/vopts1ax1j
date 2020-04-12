@@ -6,7 +6,6 @@ entity dm_4k is
         din             : in     vl_logic_vector(31 downto 0);
         DMWr            : in     vl_logic;
         clk             : in     vl_logic;
-        dout            : out    vl_logic_vector(31 downto 0);
-        dread           : in     vl_logic
+        dout            : out    vl_logic_vector(31 downto 0)
     );
 end dm_4k;
