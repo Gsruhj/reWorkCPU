@@ -59,7 +59,7 @@ module ID_EX (clk, rst, ID_EX_WR,PC_PLUS4_IN,PC_PLUS4_OUT,INSTR_iN,INSTR_OUT,RD1
          EXTOp_out<= 0;
          Alusrc_out<= 0;
         end
-      else if (ID_EX_WR)
+      else //if (ID_EX_WR)
         begin
          PC_PLUS4_OUT <= PC_PLUS4_IN;
          INSTR_OUT<= INSTR_iN;
@@ -76,7 +76,7 @@ module ID_EX (clk, rst, ID_EX_WR,PC_PLUS4_IN,PC_PLUS4_OUT,INSTR_iN,INSTR_OUT,RD1
          RegW_out<= RegW_in;
          Alusrc_out<= Alusrc_in;
          EXTOp_out<= EXTOp_in;
-         Alusrc_out<= Alusrc_in;
+         Aluctrl_out<= Aluctrl_in;
         end
    end // end always
       

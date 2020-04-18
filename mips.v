@@ -3,7 +3,7 @@ module mips();
 //C:/Users/lpdink/Desktop/code.txt
 //D:/appDate/QQrefile/testCode/Project1/Test_6_Instr.txt
    initial begin
-      $readmemh( "thirdcode.txt" , U_IM.imem ) ;
+      $readmemh( "C:/appProjects/modelsimProject/Test_6_Instr.txt" , U_IM.imem ) ;
       $monitor("PC = 0x%8X, IR = 0x%8X", U_PC.PC, instr ); 
       clk = 1 ;
       rst = 0 ;
@@ -106,7 +106,7 @@ module mips();
   wire  [31:0] RT_DATA_OUT;
   wire [1:0] jump_out_EX;
   wire ZERO_OUT;
-  wire reg_rd_out_EX;
+  wire [4:0] reg_rd_out_EX;
   wire [1:0] Branch_OUT_EX;
   wire MEMR_OUT_EX;
   wire MEMW_OUT_EX;
@@ -116,7 +116,7 @@ module mips();
   wire [31:0] DM_DATA_OUT;
   wire [31:0] DM_ADRESS_OUT;
   wire [4:0] reg_rd_out_MEM;
-  wire [31:0] ALU_C_OUT_MEM
+  wire [31:0] ALU_C_OUT_MEM;
   wire REGW_OUT_MEM;
   wire MEM2R_OUT_MEM;
 
@@ -180,7 +180,7 @@ module mips();
    
    MEM_WB U_MEM_WB (.clk(clk), .rst(rst), .MEM_WB_WR(MEM_WB_WR), .ALU_C_IN(ALU_C_OUT_EX),.ALU_C_OUT(ALU_C_OUT_MEM),
                      .DM_DATA_IN(dm_dout),.DM_DATA_OUT(DM_DATA_OUT),.reg_rd_in(reg_rd_out_EX),
-                     .reg_rd_out(reg_rd_out_MEM),.REGW_IN(REGW_OUT_EX),.REGW_OUT(REGW_OUT_MEM)
+                     .reg_rd_out(reg_rd_out_MEM),.REGW_IN(REGW_OUT_EX),.REGW_OUT(REGW_OUT_MEM),
                      .MEM2R_IN(MEM2R_OUT_EX),.MEM2R_OUT(MEM2R_OUT_MEM));
    PC U_PC (
       .clk(clk), .rst(rst), .PCWr(PCWr), .NPC(NPC_OUT), .PC(PC),.IMM(IMM)
@@ -196,7 +196,7 @@ module mips();
    assign A3=(RegDst==1)?INSTR_OUT_IF[20:16]:INSTR_OUT_IF[15:11];
    assign WD=(MEM2R_OUT_MEM==1)?DM_DATA_OUT:ALU_C_OUT_MEM;
    RF U_RF (
-      .A1(rs), .A2(rt), .A3(A3), .WD(WD), .clk(clk), 
+      .A1(rs), .A2(rt), .A3(reg_rd_out_MEM), .WD(WD), .clk(clk), 
       .RFWr(REGW_OUT_MEM), .RD1(RD1), .RD2(RD2),.ra(ra)
    );
 
@@ -209,7 +209,7 @@ module mips();
    assign shamt=INSTR_OUT_ID[10:6];
    alu U_alu (.A(RD1_OUT), .B(alu_b), .ALUOp(Aluctrl_out), .C(alu_c), .Zero(Zero),.shamt(shamt));
    //DM
-   assign dm_addr=ALU_C_OUT[11:2];
+   assign dm_addr=ALU_C_OUT_EX[11:2];
    dm_4k U_dm_4k( .addr(dm_addr), .din(RT_DATA_OUT), .DMWr(MEMW_OUT_EX), .clk(clk), .dout(dm_dout));//,.dread(MemR) );
    //CTRL
    assign Op = INSTR_OUT_IF[31:26];

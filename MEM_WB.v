@@ -1,4 +1,4 @@
-module MEM_WB (clk, rst, MEM_WB_WR, ALU_C_IN,ALU_C_OUT,DM_DATA_IN,DM_DATA_OUT,reg_rd_in,reg_rd_out,REGW_IN,REGW_OUT
+module MEM_WB (clk, rst, MEM_WB_WR, ALU_C_IN,ALU_C_OUT,DM_DATA_IN,DM_DATA_OUT,reg_rd_in,reg_rd_out,REGW_IN,REGW_OUT,
                 MEM2R_IN,MEM2R_OUT);
                
    input         clk;
@@ -26,7 +26,7 @@ module MEM_WB (clk, rst, MEM_WB_WR, ALU_C_IN,ALU_C_OUT,DM_DATA_IN,DM_DATA_OUT,re
             REGW_OUT<= 0;
             MEM2R_OUT<= 0;
         end
-      else if (IRWr)
+      else //if (IRWr)
         begin
             ALU_C_OUT<=ALU_C_IN;
             DM_DATA_OUT<= DM_DATA_IN;

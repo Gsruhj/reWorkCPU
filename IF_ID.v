@@ -17,7 +17,7 @@ module IF_ID (clk, rst, IF_ID_WR, PC_PLUS4_IN,PC_PLUS4_OUT, INSTR_IN,INSTR_OUT);
             PC_PLUS4_OUT<=0;
             INSTR_OUT<= 0;
         end
-      else if (IF_ID_WR)
+      else //if (IF_ID_WR)
         begin
             PC_PLUS4_OUT <= PC_PLUS4_IN;
             INSTR_OUT<=INSTR_IN;
