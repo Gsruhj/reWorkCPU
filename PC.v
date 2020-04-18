@@ -18,11 +18,11 @@ module PC( clk, rst, PCWr, NPC, PC,IMM );
       PC=PC+4;   
       if ( PCWr==2'b01 ) //beq及bne
          begin
-            for(i=0;i<30;i=i+1) temp[31-i]=NPC[29-i];
+            //for(i=0;i<30;i=i+1) temp[31-i]=NPC[29-i];
+            for(i=0;i<32;i=i+1)PC[i]=NPC[i];
+            //temp[0]=0;temp[1]=0;
 
-            temp[0]=0;temp[1]=0;
-
-            PC=PC+temp;
+            //PC=PC+temp;
          end
       else if(PCWr==2'b10)//J及jal
          begin

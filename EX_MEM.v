@@ -1,4 +1,4 @@
-module EX_MEM (clk, rst, EX_MEM_WR, NPC_IN,NPC_OUT,ALU_C_IN,ALU_C_OUT,ZERO_IN,ZERO_OUT,RT_DATA_IN,RT_DATA_OUT,reg_rd_in,reg_rd_out,
+module EX_MEM (clk, rst, EX_MEM_WR, NPC_IN,NPC_OUT,ALU_C_IN,ALU_C_OUT,ZERO_IN,ZERO_OUT,jump_in,jump_out,RT_DATA_IN,RT_DATA_OUT,reg_rd_in,reg_rd_out,
                 Branch_IN,Branch_OUT,MEMR_IN,MEMR_OUT,MEMW_IN,MEMW_OUT,REGW_IN,REGW_OUT,MEM2R_IN,MEM2R_OUT);
                
    input         clk;
