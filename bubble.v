@@ -11,7 +11,7 @@ module bubble(clk,rst, MEMR_ID, RT_ID, RS_IF, RT_IF, STALL );
 
     always@(posedge clk or posedge rst)
     begin
-        if(MEMR_ID and (RT_ID==RS_IF or RT_ID==RT_IF) )STALL=1;
+        if(MEMR_ID && (RT_ID==RS_IF || RT_ID==RT_IF) )STALL=1;
         else STALL=0;
     end
 

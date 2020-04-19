@@ -4,14 +4,14 @@ module dm_4k( addr, din, DMWr, clk, dout,dread );
    input  [31:0] din;
    input         DMWr;
    input         clk;
-   //input         dread;
+   input         dread;
    output reg  [31:0] dout;
    
    
      
    reg [31:0] dmem[1023:0];
    
-   always @(posedge clk) 
+   always @(*) 
    begin
       if (DMWr)
          dmem[addr] <= din;

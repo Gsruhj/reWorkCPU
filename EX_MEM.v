@@ -1,4 +1,4 @@
-module EX_MEM (clk, rst, EX_MEM_WR, NPC_IN,NPC_OUT,ALU_C_IN,ALU_C_OUT,RT_DATA_IN,RT_DATA_OUT,reg_rd_in,reg_rd_out,
+module EX_MEM (clk, rst, EX_MEM_WR, NPC_IN,NPC_OUT,ALU_C_IN,ALU_C_OUT,RT_DATA_IN,INSTR_iN,INSTR_OUT,RT_DATA_OUT,reg_rd_in,reg_rd_out,
                 MEMR_IN,MEMR_OUT,MEMW_IN,MEMW_OUT,REGW_IN,REGW_OUT,MEM2R_IN,MEM2R_OUT);
                
    input         clk;
@@ -8,11 +8,13 @@ module EX_MEM (clk, rst, EX_MEM_WR, NPC_IN,NPC_OUT,ALU_C_IN,ALU_C_OUT,RT_DATA_IN
    input  [31:0] ALU_C_IN;
    input  [31:0] RT_DATA_IN;
    input [4:0] reg_rd_in;
+   input [31:0] INSTR_iN;
    input MEMR_IN;
    input MEMW_IN;
    input REGW_IN;
    input MEM2R_IN;
 
+  output reg   [31:0] INSTR_OUT;
    output reg  [31:0] NPC_OUT;
    output reg  [31:0] ALU_C_OUT;
    output reg  [31:0] RT_DATA_OUT;
@@ -33,6 +35,7 @@ module EX_MEM (clk, rst, EX_MEM_WR, NPC_IN,NPC_OUT,ALU_C_IN,ALU_C_OUT,RT_DATA_IN
             MEMW_OUT<= 0;
             REGW_OUT<= 0;
             MEM2R_OUT<= 0;
+            INSTR_OUT<=0;
         end
       else //if (EX_MEM_WR)
         begin
@@ -44,6 +47,7 @@ module EX_MEM (clk, rst, EX_MEM_WR, NPC_IN,NPC_OUT,ALU_C_IN,ALU_C_OUT,RT_DATA_IN
             MEMW_OUT<= MEMW_IN;
             REGW_OUT<= REGW_IN;
             MEM2R_OUT<= MEM2R_IN;
+            INSTR_OUT<=INSTR_iN;
         end
    end // end always
       

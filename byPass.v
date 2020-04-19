@@ -1,31 +1,57 @@
-module byPass(clk,rst, RS_ID, RT_ID, RD_EX, RD_MEM,ForwardA,ForwardB);
+module byPass(clk,rst, RD_EX, RS_ID, RT_ID, RD_MEM,ForwardA,ForwardB,Alusrc,rt,instr_if,ForwardC);
 
     input clk;
     input rst;
+    input Alusrc;
     input [4:0] RS_ID;
     input [4:0] RT_ID;
     input [4:0] RD_EX;
     input [4:0] RD_MEM;
+    input [4:0] rt;//用于支持sw转发。
+    input [31:0] instr_if;
 
     output reg [1:0] ForwardA;
     output reg [1:0] ForwardB;
+    output reg ForwardC;
+    assign myoutofRS_ID=RS_ID;
     //wire [1:0] ForwardA;
     //wire [1:0] ForwardB;
 
-    always@(posedge clk or posedge rst)
+    //always@(posedge clk)
+    always@(*)
     begin
         if(rst)ForwardA<=0;
-        else if(RD_EX!=0 and RD_EX==RS_ID)ForwardA=2'b10;
-        else if(RD_MEM!=0 and RD_MEM==RS_ID)ForwardA=2'b01;
+        else if(RD_EX==RS_ID)
+        begin
+            if(RD_EX==0)ForwardA=2'b00;
+            else ForwardA=2'b10;
+        end
+        else if(RD_MEM==RS_ID)
+        begin
+            if(RD_MEM==0)ForwardA=2'b00;
+            else ForwardA=2'b01;
+        end
         else ForwardA=2'b00;
+        if(rst)ForwardC=0;
+        if(RT_ID==rt && instr_if[31:26]==6'b101011) ForwardC=1;
     end
 
-    always@(clk or rst or RT_ID or RD_MEM or RD_EX)
+    //always@(posedge clk)
+    always@(*)
     begin
         if(rst)ForwardB<=0;
-        else if(RD_EX!=0 and RD_EX==RT_ID)ForwardB=2'b10;
-        else if(RD_MEM!=0 and RD_MEM==RT_ID)ForwardB=2'b01;
+        else if(RD_EX==RT_ID)
+        begin
+            if(RD_EX==0)ForwardB=2'b00;
+            else ForwardB=2'b10;
+        end
+        else if(RD_MEM==RT_ID)
+        begin
+            if (RD_MEM==0)ForwardB=2'b00;
+            else ForwardB=2'b01;
+        end
         else ForwardB=2'b00;
+        if(Alusrc==1)ForwardB=2'b00;
     end
 
 endmodule

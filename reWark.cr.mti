@@ -39,12 +39,12 @@ Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
 Top level modules:
 	mips
 
-} {} {}} C:/appProjects/modelsimProject/mips.v {1 {vlog -work work -vopt C:/appProjects/modelsimProject/mips.v
+} {} {}} C:/appProjects/modelsimProject/dm.v {1 {vlog -work work -vopt C:/appProjects/modelsimProject/dm.v
 Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
--- Compiling module mips
+-- Compiling module dm_4k
 
 Top level modules:
-	mips
+	dm_4k
 
 } {} {}} C:/appProjects/modelsimProject/ID_EX.v {1 {vlog -work work -vopt C:/appProjects/modelsimProject/ID_EX.v
 Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
@@ -53,13 +53,6 @@ Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
 Top level modules:
 	ID_EX
 
-} {} {}} C:/appProjects/modelsimProject/dm.v {1 {vlog -work work -vopt C:/appProjects/modelsimProject/dm.v
-Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
--- Compiling module dm_4k
-
-Top level modules:
-	dm_4k
-
 } {} {}} C:/appProjects/modelsimProject/EXT.v {1 {vlog -work work -vopt C:/appProjects/modelsimProject/EXT.v
 Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
 -- Compiling module EXT
@@ -67,18 +60,12 @@ Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
 Top level modules:
 	EXT
 
-} {} {}} D:/appDate/QQrefile/????/Project1/PC.v {0 {vlog -work work -vopt D:/appDate/QQrefile/????/Project1/PC.v
+} {} {}} D:/appDate/QQrefile/????/Project1/IR.v {1 {vlog -work work -vopt D:/appDate/QQrefile/????/Project1/IR.v
 Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
--- Compiling module PC
-** Error: D:/appDate/QQrefile/实验代码/Project1/PC.v(20): (vlog-2730) Undefined variable: 'temp'.
-
-
-} {4.0 5.0} {}} C:/appProjects/modelsimProject/alu.v {1 {vlog -work work -vopt C:/appProjects/modelsimProject/alu.v
-Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
--- Compiling module alu
+-- Compiling module IR
 
 Top level modules:
-	alu
+	IR
 
 } {} {}} C:/appProjects/modelsimProject/mux.v {1 {vlog -work work -vopt C:/appProjects/modelsimProject/mux.v
 Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
@@ -93,14 +80,20 @@ Top level modules:
 	mux8
 	mux16
 
-} {} {}} D:/appDate/QQrefile/????/Project1/IR.v {1 {vlog -work work -vopt D:/appDate/QQrefile/????/Project1/IR.v
+} {} {}} C:/appProjects/modelsimProject/alu.v {1 {vlog -work work -vopt C:/appProjects/modelsimProject/alu.v
 Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
--- Compiling module IR
+-- Compiling module alu
 
 Top level modules:
-	IR
+	alu
 
-} {} {}} C:/appProjects/modelsimProject/EX_MEM.v {1 {vlog -work work -vopt C:/appProjects/modelsimProject/EX_MEM.v
+} {} {}} D:/appDate/QQrefile/????/Project1/PC.v {0 {vlog -work work -vopt D:/appDate/QQrefile/????/Project1/PC.v
+Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
+-- Compiling module PC
+** Error: D:/appDate/QQrefile/实验代码/Project1/PC.v(20): (vlog-2730) Undefined variable: 'temp'.
+
+
+} {4.0 5.0} {}} C:/appProjects/modelsimProject/EX_MEM.v {1 {vlog -work work -vopt C:/appProjects/modelsimProject/EX_MEM.v
 Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
 -- Compiling module EX_MEM
 
@@ -114,19 +107,19 @@ Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
 Top level modules:
 	IF_ID
 
-} {} {}} C:/appProjects/modelsimProject/PC.v {1 {vlog -work work -vopt C:/appProjects/modelsimProject/PC.v
-Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
--- Compiling module PC
-
-Top level modules:
-	PC
-
 } {} {}} C:/appProjects/modelsimProject/IR.v {1 {vlog -work work -vopt C:/appProjects/modelsimProject/IR.v
 Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
 -- Compiling module IR
 
 Top level modules:
 	IR
+
+} {} {}} C:/appProjects/modelsimProject/PC.v {1 {vlog -work work -vopt C:/appProjects/modelsimProject/PC.v
+Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
+-- Compiling module PC
+
+Top level modules:
+	PC
 
 } {} {}} D:/appDate/QQrefile/????/Project1/mips_tb.v {1 {vlog -work work -vopt D:/appDate/QQrefile/????/Project1/mips_tb.v
 Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
@@ -135,19 +128,19 @@ Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
 Top level modules:
 	mips_tb
 
+} {} {}} D:/appDate/QQrefile/????/Project1/instruction_def.v {1 {vlog -work work -vopt D:/appDate/QQrefile/????/Project1/instruction_def.v
+Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
+
+} {} {}} D:/appDate/QQrefile/????/Project1/ctrl_encode_def.v {1 {vlog -work work -vopt D:/appDate/QQrefile/????/Project1/ctrl_encode_def.v
+Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
+
 } {} {}} D:/appDate/QQrefile/????/Project1/RF.v {0 {vlog -work work -vopt D:/appDate/QQrefile/????/Project1/RF.v
 Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
 ** Error: D:/appDate/QQrefile/实验代码/Project1/RF.v(1): Cannot find `include file "global_def.v" in directories:
     C:/appdownloads/modelsim/ovm-2.1.2/../verilog_src/ovm-2.1.2/src, C:/appdownloads/modelsim/uvm-1.1a/../verilog_src/uvm-1.1a/src
 -- Compiling module RF
 
-} {3.0 4.0} {}} D:/appDate/QQrefile/????/Project1/ctrl_encode_def.v {1 {vlog -work work -vopt D:/appDate/QQrefile/????/Project1/ctrl_encode_def.v
-Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
-
-} {} {}} D:/appDate/QQrefile/????/Project1/instruction_def.v {1 {vlog -work work -vopt D:/appDate/QQrefile/????/Project1/instruction_def.v
-Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
-
-} {} {}} C:/appProjects/modelsimProject/RF.v {1 {vlog -work work -vopt C:/appProjects/modelsimProject/RF.v
+} {3.0 4.0} {}} C:/appProjects/modelsimProject/RF.v {1 {vlog -work work -vopt C:/appProjects/modelsimProject/RF.v
 Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
 -- Compiling module RF
 
@@ -167,7 +160,20 @@ Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
 ** Error: D:/appDate/QQrefile/实验代码/Project1/EXT.v(14): (vlog-2163) Macro `EXT_HIGHPOS is undefined.
 
 
-} {3.0 4.0 6.0 7.0 8.0 10.0 11.0 12.0} {}} D:/appDate/QQrefile/????/Project1/alu.v {0 {vlog -work work -vopt D:/appDate/QQrefile/????/Project1/alu.v
+} {3.0 4.0 6.0 7.0 8.0 10.0 11.0 12.0} {}} D:/appDate/QQrefile/????/Project1/mux.v {1 {vlog -work work -vopt D:/appDate/QQrefile/????/Project1/mux.v
+Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
+-- Compiling module mux2
+-- Compiling module mux4
+-- Compiling module mux8
+-- Compiling module mux16
+
+Top level modules:
+	mux2
+	mux4
+	mux8
+	mux16
+
+} {} {}} D:/appDate/QQrefile/????/Project1/alu.v {0 {vlog -work work -vopt D:/appDate/QQrefile/????/Project1/alu.v
 Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
 ** Error: D:/appDate/QQrefile/实验代码/Project1/alu.v(1): Cannot find `include file "ctrl_encode_def.v" in directories:
     C:/appdownloads/modelsim/ovm-2.1.2/../verilog_src/ovm-2.1.2/src, C:/appdownloads/modelsim/uvm-1.1a/../verilog_src/uvm-1.1a/src
@@ -182,27 +188,21 @@ Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
 ** Error: D:/appDate/QQrefile/实验代码/Project1/alu.v(16): (vlog-2163) Macro `ALUOp_SUB is undefined.
 
 
-} {3.0 4.0 6.0 7.0 8.0 10.0 11.0 12.0 13.0 14.0} {}} D:/appDate/QQrefile/????/Project1/mux.v {1 {vlog -work work -vopt D:/appDate/QQrefile/????/Project1/mux.v
+} {3.0 4.0 6.0 7.0 8.0 10.0 11.0 12.0 13.0 14.0} {}} C:/appProjects/modelsimProject/byPass.v {1 {vlog -work work -vopt C:/appProjects/modelsimProject/byPass.v
 Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
--- Compiling module mux2
--- Compiling module mux4
--- Compiling module mux8
--- Compiling module mux16
+-- Compiling module byPass
 
 Top level modules:
-	mux2
-	mux4
-	mux8
-	mux16
+	byPass
+
+} {} {}} C:/appProjects/modelsimProject/bubble.v {1 {vlog -work work -vopt C:/appProjects/modelsimProject/bubble.v
+Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
+-- Compiling module bubble
+
+Top level modules:
+	bubble
 
 } {} {}} D:/appDate/QQrefile/????/Project1/ctrl.v {1 {vlog -work work -vopt D:/appDate/QQrefile/????/Project1/ctrl.v
-Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
--- Compiling module Ctrl
-
-Top level modules:
-	Ctrl
-
-} {} {}} C:/appProjects/modelsimProject/ctrl.v {1 {vlog -work work -vopt C:/appProjects/modelsimProject/ctrl.v
 Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
 -- Compiling module Ctrl
 
@@ -215,5 +215,12 @@ Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
 
 Top level modules:
 	im_4k
+
+} {} {}} C:/appProjects/modelsimProject/ctrl.v {1 {vlog -work work -vopt C:/appProjects/modelsimProject/ctrl.v
+Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
+-- Compiling module Ctrl
+
+Top level modules:
+	Ctrl
 
 } {} {}}
