@@ -1,6 +1,6 @@
 module ID_EX (clk, rst, ID_EX_WR,PC_PLUS4_IN,PC_PLUS4_OUT,INSTR_iN,INSTR_OUT,RD1_IN,RD1_OUT,RD2_IN,RD2_OUT,EXT_IN,EXT_OUT,reg_rd_in,reg_rd_out,
             jump_in,jump_out,RegDst_in,RegDst_out,Branch_in,Branch_OUT,MemR_in,MemR_out,Mem2R_in,Mem2R_out,MemW_in,MemW_out,RegW_in,RegW_out,
-            Alusrc_in,Alusrc_out,EXTOp_in,EXTOp_out,Aluctrl_in,Aluctrl_out);
+            Alusrc_in,Alusrc_out,EXTOp_in,EXTOp_out,Aluctrl_in,Aluctrl_out,STALL);
                
    input         clk;
    input         rst;
@@ -21,6 +21,7 @@ module ID_EX (clk, rst, ID_EX_WR,PC_PLUS4_IN,PC_PLUS4_OUT,INSTR_iN,INSTR_OUT,RD1
    input Alusrc_in;
    input [1:0] EXTOp_in;
    input [4:0] Aluctrl_in;
+   input STALL;
 
     output reg [31:0] PC_PLUS4_OUT;
     output reg [31:0] INSTR_OUT;
@@ -48,6 +49,19 @@ module ID_EX (clk, rst, ID_EX_WR,PC_PLUS4_IN,PC_PLUS4_OUT,INSTR_iN,INSTR_OUT,RD1
          RD2_OUT<= 0;
          EXT_OUT<=0;
          reg_rd_out<= 0;
+         jump_out<= 0;
+         RegDst_out<= 0;
+         Branch_OUT<= 0;
+         MemR_out<= 0;
+         Mem2R_out<= 0;
+         MemW_out<= 0;
+         RegW_out<= 0;
+         Alusrc_out<= 0;
+         EXTOp_out<= 0;
+         Alusrc_out<= 0;
+        end
+      else if(STALL)
+        begin
          jump_out<= 0;
          RegDst_out<= 0;
          Branch_OUT<= 0;

@@ -124,6 +124,8 @@ module mips();
   //旁路
   wire [1:0] ForwardA;
   wire [1:0] ForwardB;
+  //阻塞
+  wire STALL;
 
    //mips_tb U_mips_tb();
    //PC：PCWr:input,branch有效且零信号有效为1，决定分支有效。NPC：input,由EXT传来的基于原PC的分支地址。PC：output,当前指令地址，传给im以读出指令。
@@ -161,7 +163,7 @@ module mips();
             .Branch_OUT(Branch_OUT_ID),.MemR_in(MemR),.MemR_out(MEMR_OUT_ID),
             .Mem2R_in(Mem2R),.Mem2R_out(MEM2R_OUT_ID),.MemW_in(MemW),.MemW_out(MEMW_OUT_ID),.RegW_in(RegW),.RegW_out(REGW_OUT_ID),
             .Alusrc_in(Alusrc),.Alusrc_out(Alusrc_out),.EXTOp_in(EXTOp),.EXTOp_out(EXTOp_out),
-            .Aluctrl_in(Aluctrl),.Aluctrl_out(Aluctrl_out));
+            .Aluctrl_in(Aluctrl),.Aluctrl_out(Aluctrl_out),.STALL(STALL));
             //或许后续可以优化为： PC_PLUS4_OUT_ID+(EXT_OUT<<2)
 
 
@@ -216,7 +218,7 @@ module mips();
    alu U_alu (.A(RD1_OUT), .B(alu_b), .ALUOp(Aluctrl_out), .C(alu_c), .Zero(Zero),.shamt(shamt));
    //DM
    assign dm_addr=ALU_C_OUT_EX[11:2];
-   dm_4k U_dm_4k( .addr(dm_addr), .din(RT_DATA_OUT), .DMWr(MEMW_OUT_EX), .clk(clk), .dout(dm_dout));//,.dread(MemR) );
+   dm_4k U_dm_4k( .addr(dm_addr), .din(RT_DATA_OUT), .DMWr(MEMW_OUT_EX), .clk(clk), .dout(dm_dout).dread(MEMR_OUT_EX) );
    //CTRL
    assign Op = INSTR_OUT_IF[31:26];
    assign Funct = INSTR_OUT_IF[5:0];
@@ -228,5 +230,7 @@ module mips();
    byPass U_byPass(.clk(clk),.rst(rst), .RS_ID(INSTR_OUT_ID[25:21]), .RT_ID(INSTR_OUT_ID[20:16]),
                    .RD_EX(reg_rd_out_EX), .RD_MEM(reg_rd_out_MEM),.ForwardA(ForwardA),.ForwardB(ForwardB));
 
-
+   //阻塞
+   bubble U_bubble(.clk(clk),.rst(rst), .MEMR_ID(MEMR_OUT_ID), .RT_ID(INSTR_OUT_ID[20:16]),
+                   .RS_IF(INSTR_OUT_IF[25:21]), .RT_IF(INSTR_OUT_IF[20:16]), .STALL(STALL) );
 endmodule

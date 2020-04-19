@@ -12,7 +12,7 @@ module byPass(clk,rst, RS_ID, RT_ID, RD_EX, RD_MEM,ForwardA,ForwardB);
     //wire [1:0] ForwardA;
     //wire [1:0] ForwardB;
 
-    always@(clk or rst or RS_ID or RD_MEM or RD_EX )
+    always@(posedge clk or posedge rst)
     begin
         if(rst)ForwardA<=0;
         else if(RD_EX!=0 and RD_EX==RS_ID)ForwardA=2'b10;
