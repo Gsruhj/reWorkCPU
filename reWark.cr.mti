@@ -39,12 +39,12 @@ Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
 Top level modules:
 	mips
 
-} {} {}} C:/appProjects/modelsimProject/dm.v {1 {vlog -work work -vopt C:/appProjects/modelsimProject/dm.v
+} {} {}} C:/appProjects/modelsimProject/mips.v {1 {vlog -work work -vopt {C:\appProjects\modelsimProject\mips.v}
 Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
--- Compiling module dm_4k
+-- Compiling module mips
 
 Top level modules:
-	dm_4k
+	mips
 
 } {} {}} C:/appProjects/modelsimProject/ID_EX.v {1 {vlog -work work -vopt C:/appProjects/modelsimProject/ID_EX.v
 Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
@@ -52,6 +52,13 @@ Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
 
 Top level modules:
 	ID_EX
+
+} {} {}} C:/appProjects/modelsimProject/dm.v {1 {vlog -work work -vopt C:/appProjects/modelsimProject/dm.v
+Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
+-- Compiling module dm_4k
+
+Top level modules:
+	dm_4k
 
 } {} {}} C:/appProjects/modelsimProject/EXT.v {1 {vlog -work work -vopt C:/appProjects/modelsimProject/EXT.v
 Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
@@ -99,13 +106,6 @@ Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
 
 Top level modules:
 	EX_MEM
-
-} {} {}} C:/appProjects/modelsimProject/IF_ID.v {1 {vlog -work work -vopt C:/appProjects/modelsimProject/IF_ID.v
-Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
--- Compiling module IF_ID
-
-Top level modules:
-	IF_ID
 
 } {} {}} C:/appProjects/modelsimProject/IR.v {1 {vlog -work work -vopt C:/appProjects/modelsimProject/IR.v
 Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
