@@ -54,6 +54,7 @@ module mips();
 
    //ALU
    wire Zero;
+   wire [31:0] alu_a;
    wire [31:0] alu_c;
    wire [31:0] alu_b;
    //assign alu_b = (Alusrc==1)?Imm32:RD2;
@@ -119,6 +120,10 @@ module mips();
   wire [31:0] ALU_C_OUT_MEM;
   wire REGW_OUT_MEM;
   wire MEM2R_OUT_MEM;
+
+  //旁路
+  wire [1:0] ForwardA;
+  wire [1:0] ForwardB;
 
    //mips_tb U_mips_tb();
    //PC：PCWr:input,branch有效且零信号有效为1，决定分支有效。NPC：input,由EXT传来的基于原PC的分支地址。PC：output,当前指令地址，传给im以读出指令。
@@ -205,7 +210,8 @@ module mips();
    EXT U_EXT( .Imm16(Imm16), .EXTOp(EXTOp), .Imm32(Imm32) );
 
    //ALU
-   assign alu_b = (Alusrc_out==1)?EXT_OUT:RD2_OUT;
+   assign alu_a = (ForwardA==2'b00)?RD1_OUT:((ForwardA==2'b10)?ALU_C_OUT_EX:WD)//支持了转发。
+   assign alu_b = (ForwardB==2'b00)?((Alusrc_out==1)?EXT_OUT:RD2_OUT):((ForwardB==2'b10)?ALU_C_OUT_EX:WD);
    assign shamt=INSTR_OUT_ID[10:6];
    alu U_alu (.A(RD1_OUT), .B(alu_b), .ALUOp(Aluctrl_out), .C(alu_c), .Zero(Zero),.shamt(shamt));
    //DM
@@ -218,5 +224,9 @@ module mips();
 				,.MemW(MemW),.RegW(RegW),.Alusrc(Alusrc),.EXTOp(EXTOp),.Aluctrl(Aluctrl)
 				,.OpCode(Op),.Funct(Funct));
 
-            
+   //旁路
+   byPass U_byPass(.clk(clk),.rst(rst), .RS_ID(INSTR_OUT_ID[25:21]), .RT_ID(INSTR_OUT_ID[20:16]),
+                   .RD_EX(reg_rd_out_EX), .RD_MEM(reg_rd_out_MEM),.ForwardA(ForwardA),.ForwardB(ForwardB));
+
+
 endmodule
