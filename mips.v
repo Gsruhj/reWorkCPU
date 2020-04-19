@@ -33,6 +33,7 @@ module mips();
    wire [31:0] im_dout;
    wire [31:0] instr;
    assign instr=im_dout;
+   assign IMM=instr[25:0];
    /*
    assign Op = instr[31:26];
    assign Funct = instr[5:0];
@@ -188,8 +189,10 @@ module mips();
                      .DM_DATA_IN(dm_dout),.DM_DATA_OUT(DM_DATA_OUT),.reg_rd_in(reg_rd_out_EX),
                      .reg_rd_out(reg_rd_out_MEM),.REGW_IN(REGW_OUT_EX),.REGW_OUT(REGW_OUT_MEM),
                      .MEM2R_IN(MEM2R_OUT_EX),.MEM2R_OUT(MEM2R_OUT_MEM));
+
+   assign NPC=(jump_out_EX==2'b11)?ra:NPC_OUT;
    PC U_PC (
-      .clk(clk), .rst(rst), .PCWr(PCWr), .NPC(NPC_OUT), .PC(PC),.IMM(IMM)
+      .clk(clk), .rst(rst), .PCWr(PCWr), .NPC(NPC), .PC(PC),.IMM(IMM)
    ); 
    //IM
    im_4k U_IM ( 
