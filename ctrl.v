@@ -1,11 +1,10 @@
 `include "ctrl_encode_def.v"
 `include "instruction_def.v"
 
-module Ctrl(jump,RegDst,Branch,MemR,Mem2R,MemW,RegW,Alusrc,EXTOp,Aluctrl,OpCode,Funct);
+module Ctrl(RegDst,Branch,MemR,Mem2R,MemW,RegW,Alusrc,EXTOp,Aluctrl,OpCode,Funct);
     input [31:26] OpCode;//op:高6
     input [5:0] Funct;//funct:低6位
     
-    output reg [1:0] jump;
     output reg RegDst;
     output reg [1:0] Branch;
     output reg MemR;
@@ -22,7 +21,6 @@ module Ctrl(jump,RegDst,Branch,MemR,Mem2R,MemW,RegW,Alusrc,EXTOp,Aluctrl,OpCode,
             `INSTR_RTYPE_OP:
                 begin
                     assign Branch=2'b00;
-                    assign jump=2'b00;
                     assign Mem2R=0;
                     assign MemR=0;
                     assign MemW=0;
@@ -86,7 +84,6 @@ module Ctrl(jump,RegDst,Branch,MemR,Mem2R,MemW,RegW,Alusrc,EXTOp,Aluctrl,OpCode,
                             end
                         `INSTR_JR_FUNCT:
                             begin
-                                assign jump=2'b11;
                                 assign RegW=0;
                                 assign Aluctrl=`ALUOp_NOP;
                             end
@@ -99,7 +96,6 @@ module Ctrl(jump,RegDst,Branch,MemR,Mem2R,MemW,RegW,Alusrc,EXTOp,Aluctrl,OpCode,
                 end
             `INSTR_ORI_OP:
                 begin
-                    assign jump=2'b00;
                     assign RegDst=1;
                     assign Branch=2'b00;
                     assign MemR=0;
@@ -113,7 +109,6 @@ module Ctrl(jump,RegDst,Branch,MemR,Mem2R,MemW,RegW,Alusrc,EXTOp,Aluctrl,OpCode,
                 end
             `INSTR_LW_OP:
                 begin
-                    assign jump=2'b00;
                     assign RegDst=1;
                     assign Branch=2'b00;
                     assign MemR=1;
@@ -127,7 +122,6 @@ module Ctrl(jump,RegDst,Branch,MemR,Mem2R,MemW,RegW,Alusrc,EXTOp,Aluctrl,OpCode,
                 end
             `INSTR_SW_OP:
                 begin
-                    assign jump=2'b00;
                     assign RegDst=1;
                     assign Branch=2'b00;
                     assign MemR=0;
@@ -141,7 +135,6 @@ module Ctrl(jump,RegDst,Branch,MemR,Mem2R,MemW,RegW,Alusrc,EXTOp,Aluctrl,OpCode,
                 end
             `INSTR_BEQ_OP:
                 begin
-                    assign jump=2'b00;
                     assign RegDst=0;
                     assign Branch=2'b01;
                     assign MemR=0;
@@ -156,7 +149,6 @@ module Ctrl(jump,RegDst,Branch,MemR,Mem2R,MemW,RegW,Alusrc,EXTOp,Aluctrl,OpCode,
 //补充第二阶段代码
             `INSTR_LUI_OP: 
                 begin 
-                    assign jump=2'b00;
                     assign RegDst=1;
                     assign Branch=2'b00;
                     assign MemR=0;
@@ -170,7 +162,6 @@ module Ctrl(jump,RegDst,Branch,MemR,Mem2R,MemW,RegW,Alusrc,EXTOp,Aluctrl,OpCode,
 			    end
             `INSTR_SLTI_OP:
                 begin
-                    assign jump=2'b00;
                     assign RegDst=1;
                     assign Branch=2'b00;
                     assign MemR=0;
@@ -184,7 +175,6 @@ module Ctrl(jump,RegDst,Branch,MemR,Mem2R,MemW,RegW,Alusrc,EXTOp,Aluctrl,OpCode,
                 end
             `INSTR_BNE_OP:
                 begin
-                    assign jump=2'b00;
                     assign RegDst=0;
                     assign Branch=2'b10;
                     assign MemR=0;
@@ -198,7 +188,6 @@ module Ctrl(jump,RegDst,Branch,MemR,Mem2R,MemW,RegW,Alusrc,EXTOp,Aluctrl,OpCode,
                 end
             `INSTR_J_OP:
                 begin
-                    assign jump=2'b01;
                     assign RegDst=1;
                     assign Branch=2'b11;
                     assign MemR=0;
@@ -212,7 +201,6 @@ module Ctrl(jump,RegDst,Branch,MemR,Mem2R,MemW,RegW,Alusrc,EXTOp,Aluctrl,OpCode,
                 end
             `INSTR_JAL_OP:
                 begin
-                    assign jump=2'b10;
                     assign RegDst=1;
                     assign Branch=2'b11;
                     assign MemR=0;
@@ -226,7 +214,6 @@ module Ctrl(jump,RegDst,Branch,MemR,Mem2R,MemW,RegW,Alusrc,EXTOp,Aluctrl,OpCode,
                 end
             `INSTR_ADDI_OP:
                 begin
-                    assign jump=2'b00;
                     assign RegDst=1;
                     assign Branch=2'b00;
                     assign MemR=0;

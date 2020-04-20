@@ -17,8 +17,6 @@ entity ID_EX is
         EXT_OUT         : out    vl_logic_vector(31 downto 0);
         reg_rd_in       : in     vl_logic_vector(4 downto 0);
         reg_rd_out      : out    vl_logic_vector(4 downto 0);
-        jump_in         : in     vl_logic_vector(1 downto 0);
-        jump_out        : out    vl_logic_vector(1 downto 0);
         RegDst_in       : in     vl_logic;
         RegDst_out      : out    vl_logic;
         Branch_in       : in     vl_logic_vector(1 downto 0);

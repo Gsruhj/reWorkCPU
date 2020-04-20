@@ -2,7 +2,6 @@ library verilog;
 use verilog.vl_types.all;
 entity Ctrl is
     port(
-        jump            : out    vl_logic_vector(1 downto 0);
         RegDst          : out    vl_logic;
         Branch          : out    vl_logic_vector(1 downto 0);
         MemR            : out    vl_logic;

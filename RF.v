@@ -1,10 +1,12 @@
 //`include "global_def.v"
-module RF( A1, A2, A3, WD, clk, RFWr, RD1, RD2,ra );
+module RF( A1, A2, A3, WD, clk, RFWr, RD1, RD2,ra,PCra,enableWriteRa );
     
    input   [4:0]  A1, A2, A3;
    input  [31:0] WD;
    input         clk;
    input         RFWr;
+   input [31:0] PCra;
+   input enableWriteRa;
    output reg [31:0] RD1, RD2,ra;
    
    reg [31:0] rf[31:0];
@@ -18,6 +20,7 @@ module RF( A1, A2, A3, WD, clk, RFWr, RD1, RD2,ra );
    always @(*) begin
       if (RFWr)
          rf[A3] = WD;
+      if(enableWriteRa)rf[5'b11111]=PCra;
       
          $display("R[00-07]=%8X, %8X, %8X, %8X, %8X, %8X, %8X, %8X", 0, rf[1], rf[2], rf[3], rf[4], rf[5], rf[6], rf[7]);
          $display("R[08-15]=%8X, %8X, %8X, %8X, %8X, %8X, %8X, %8X", rf[8], rf[9], rf[10], rf[11], rf[12], rf[13], rf[14], rf[15]);

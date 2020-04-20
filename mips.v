@@ -116,7 +116,7 @@ module mips();
   wire MEMW_OUT_EX;
   wire REGW_OUT_EX;
   wire MEM2R_OUT_EX;
-  wire INSTR_OUT_EX;
+  wire [31:0] INSTR_OUT_EX;
    //MEM_WB
   wire [31:0] DM_DATA_OUT;
   wire [31:0] DM_ADRESS_OUT;
@@ -129,7 +129,7 @@ module mips();
   //旁路
   wire [1:0] ForwardA;
   wire [1:0] ForwardB;
-  wire ForwardC;
+  wire [1:0] ForwardC;
   wire [31:0] RD2_IN;
   /*
   assign ForwardA=(reg_rd_out_EX==INSTR_OUT_ID[25:21])?2'b10:((reg_rd_out_MEM==INSTR_OUT_ID[25:21])?2'b01:2'b00);
@@ -189,10 +189,10 @@ always@(Branch_OUT_EX or ZERO_OUT or jump)begin
    IF_ID U_IF_ID (.clk(clk), .rst(rst), .IF_ID_WR(IF_ID_WR), .PC_PLUS4_IN(PC+4),
                   .PC_PLUS4_OUT(PC_PLUS4_OUT_IF), .INSTR_IN(instr),.INSTR_OUT(INSTR_OUT_IF),.Flush(Flush));
 
-   assign RD2_IN=(ForwardC==1)?alu_c:RD2;
+   assign RD2_IN=(ForwardC==2'b01)?alu_c:((ForwardC==2'b10)?WD:RD2);
    ID_EX U_ID_EX (.clk(clk), .rst(rst), .ID_EX_WR(ID_EX_WR),.PC_PLUS4_IN(PC_PLUS4_OUT_IF),.PC_PLUS4_OUT(PC_PLUS4_OUT_ID),
                .INSTR_iN(INSTR_OUT_IF),.INSTR_OUT(INSTR_OUT_ID),.RD1_IN(RD1),.RD1_OUT(RD1_OUT),
-            .RD2_IN(RD2_IN),.RD2_OUT(RD2_OUT),.EXT_IN(Imm32),.EXT_OUT(EXT_OUT),.reg_rd_in(A3),.reg_rd_out(reg_rd_out_ID),.jump_in(jump),.jump_out(jump_out_ID),
+            .RD2_IN(RD2_IN),.RD2_OUT(RD2_OUT),.EXT_IN(Imm32),.EXT_OUT(EXT_OUT),.reg_rd_in(A3),.reg_rd_out(reg_rd_out_ID),
             .RegDst_in(RegDst),.RegDst_out(RegDst_out),.Branch_in(Branch),
             .Branch_OUT(Branch_OUT_ID),.MemR_in(MemR),.MemR_out(MEMR_OUT_ID),
             .Mem2R_in(Mem2R),.Mem2R_out(MEM2R_OUT_ID),.MemW_in(MemW),.MemW_out(MEMW_OUT_ID),.RegW_in(RegW),.RegW_out(REGW_OUT_ID),
@@ -214,7 +214,7 @@ always@(Branch_OUT_EX or ZERO_OUT or jump)begin
    end                                        
    EX_MEM U_EX_MEM (.clk(clk), .rst(rst), .EX_MEM_WR(EX_MEM_WR), .NPC_IN(EX_NPC),.NPC_OUT(NPC_OUT),
                      .ALU_C_IN(alu_c),.ALU_C_OUT(ALU_C_OUT_EX),.ZERO_IN(Zero),.ZERO_OUT(ZERO_OUT),
-                     .jump_in(jump_out_ID),.jump_out(jump_out_EX),.RT_DATA_IN(RD2_OUT),.INSTR_iN(INSTR_OUT_ID),.INSTR_OUT(INSTR_OUT_EX),
+                     .RT_DATA_IN(RD2_OUT),.INSTR_iN(INSTR_OUT_ID),.INSTR_OUT(INSTR_OUT_EX),
                      .RT_DATA_OUT(RT_DATA_OUT),.reg_rd_in(reg_rd_out_ID),.reg_rd_out(reg_rd_out_EX),.Branch_IN(Branch_OUT_ID),.Branch_OUT(Branch_OUT_EX),
                      .MEMR_IN(MEMR_OUT_ID),.MEMR_OUT(MEMR_OUT_EX),.MEMW_IN(MEMW_OUT_ID),
                      .MEMW_OUT(MEMW_OUT_EX),.REGW_IN(REGW_OUT_ID),.REGW_OUT(REGW_OUT_EX),.MEM2R_IN(MEM2R_OUT_ID),.MEM2R_OUT(MEM2R_OUT_EX),.Flush(Flush));
@@ -226,7 +226,7 @@ always@(Branch_OUT_EX or ZERO_OUT or jump)begin
 
     
     
-   assign NPC=(jump_out_EX==2'b11)?ra:NPC_OUT;
+   assign NPC=(jump==2'b11)?ra:NPC_OUT;
    PC U_PC (
       .clk(clk), .rst(rst), .PCWr(PCWr), .NPC(NPC), .PC(PC),.IMM(IMM)
    ); 
@@ -236,13 +236,17 @@ always@(Branch_OUT_EX or ZERO_OUT or jump)begin
    );
    
    //RF
+   wire [31:0] PCra;
+   wire enableWriteRa;
+   assign PCra=(instr[31:26]==`INSTR_JAL_OP)?(PC+4):32'd0;
+   assign enableWriteRa=(instr[31:26]==`INSTR_JAL_OP)?1:0;
    assign rs=INSTR_OUT_IF[25:21];
    assign rt=INSTR_OUT_IF[20:16];
    assign A3=(RegDst==1)?INSTR_OUT_IF[20:16]:INSTR_OUT_IF[15:11];
    assign WD=(MEM2R_OUT_MEM==1)?DM_DATA_OUT:ALU_C_OUT_MEM;
    RF U_RF (
       .A1(rs), .A2(rt), .A3(reg_rd_out_MEM), .WD(WD), .clk(clk), 
-      .RFWr(REGW_OUT_MEM), .RD1(RD1), .RD2(RD2),.ra(ra)
+      .RFWr(REGW_OUT_MEM), .RD1(RD1), .RD2(RD2),.ra(ra),.PCra(PCra),.enableWriteRa(enableWriteRa)
    );
 
    //EXT
@@ -260,8 +264,8 @@ always@(Branch_OUT_EX or ZERO_OUT or jump)begin
    //CTRL
    assign Op = INSTR_OUT_IF[31:26];
    assign Funct = INSTR_OUT_IF[5:0];
-   assign jump=(Op==`INSTR_J_OP||Op==`INSTR_JAL_OP)?2'b01:((Funct==`INSTR_JR_FUNCT&&Op==`INSTR_RTYPE_OP)?2'b11:2'b00);
-  	Ctrl U_Ctrl(.jump(jump),.RegDst(RegDst),.Branch(Branch),.MemR(MemR),.Mem2R(Mem2R)
+   assign jump=(instr[31:26]==`INSTR_J_OP||instr[31:26]==`INSTR_JAL_OP)?2'b01:((instr[5:0]==`INSTR_JR_FUNCT&&instr[31:26]==`INSTR_RTYPE_OP)?2'b11:2'b00);
+  	Ctrl U_Ctrl(.RegDst(RegDst),.Branch(Branch),.MemR(MemR),.Mem2R(Mem2R)
 				,.MemW(MemW),.RegW(RegW),.Alusrc(Alusrc),.EXTOp(EXTOp),.Aluctrl(Aluctrl)
 				,.OpCode(Op),.Funct(Funct));
 
@@ -271,7 +275,7 @@ always@(Branch_OUT_EX or ZERO_OUT or jump)begin
    //assign RS_ID=INSTR_OUT_ID[25:21];
    byPass U_byPass(.clk(clk),.rst(rst), .RD_EX(reg_rd_out_EX), .RS_ID(INSTR_OUT_ID[25:21]),
                    .RT_ID_A3(reg_rd_out_ID),.RT_ID(INSTR_OUT_ID[20:16]), .RD_MEM(reg_rd_out_MEM),.ForwardA(ForwardA),.ForwardB(ForwardB),
-                   .Alusrc(Alusrc_out),.rt(rt),.instr_if(INSTR_OUT_IF),.ForwardC(ForwardC));
+                   .Alusrc(Alusrc_out),.rt(rt),.instr_if(INSTR_OUT_IF),.instr_id(INSTR_OUT_ID),.ForwardC(ForwardC));
    //阻塞
    bubble U_bubble(.clk(clk),.rst(rst), .MEMR_ID(MemR), .RT_ID(INSTR_OUT_ID[20:16]),
                    .RS_IF(INSTR_OUT_IF[25:21]), .RT_IF(INSTR_OUT_IF[20:16]), .STALL(STALL) );

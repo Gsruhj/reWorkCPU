@@ -1,4 +1,4 @@
-module byPass(clk,rst, RD_EX, RS_ID, RT_ID_A3,RT_ID, RD_MEM,ForwardA,ForwardB,Alusrc,rt,instr_if,ForwardC);
+module byPass(clk,rst, RD_EX, RS_ID, RT_ID_A3,RT_ID, RD_MEM,ForwardA,ForwardB,Alusrc,rt,instr_if,instr_id,ForwardC);
 
     input clk;
     input rst;
@@ -10,10 +10,11 @@ module byPass(clk,rst, RD_EX, RS_ID, RT_ID_A3,RT_ID, RD_MEM,ForwardA,ForwardB,Al
     input [4:0] RD_MEM;
     input [4:0] rt;//用于支持sw转发。
     input [31:0] instr_if;
+    input [31:0] instr_id;
 
     output reg [1:0] ForwardA;
     output reg [1:0] ForwardB;
-    output reg ForwardC;
+    output reg [1:0] ForwardC;
     assign myoutofRS_ID=RS_ID;
     //wire [1:0] ForwardA;
     //wire [1:0] ForwardB;
@@ -34,9 +35,11 @@ module byPass(clk,rst, RD_EX, RS_ID, RT_ID_A3,RT_ID, RD_MEM,ForwardA,ForwardB,Al
         end
         else ForwardA=2'b00;
         if(rst)ForwardC=0;
-        if(RT_ID_A3==rt && instr_if[31:26]==6'b101011) ForwardC=1;
+        if(RT_ID_A3==rt && instr_if[31:26]==6'b101011) ForwardC=2'b01;
         //if(RT_ID==rt) ForwardC=1;
         else ForwardC=0;
+
+        if(RT_ID_A3==rt && instr_if[31:26]==6'b101011&&instr_id[31:26]==6'b100011)ForwardC=2'b10;
     end
 
     //always@(posedge clk)

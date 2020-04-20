@@ -14,6 +14,7 @@ entity byPass is
         Alusrc          : in     vl_logic;
         rt              : in     vl_logic_vector(4 downto 0);
         instr_if        : in     vl_logic_vector(31 downto 0);
-        ForwardC        : out    vl_logic
+        instr_id        : in     vl_logic_vector(31 downto 0);
+        ForwardC        : out    vl_logic_vector(1 downto 0)
     );
 end byPass;

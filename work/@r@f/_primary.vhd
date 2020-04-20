@@ -10,6 +10,8 @@ entity RF is
         RFWr            : in     vl_logic;
         RD1             : out    vl_logic_vector(31 downto 0);
         RD2             : out    vl_logic_vector(31 downto 0);
-        ra              : out    vl_logic_vector(31 downto 0)
+        ra              : out    vl_logic_vector(31 downto 0);
+        PCra            : in     vl_logic_vector(31 downto 0);
+        enableWriteRa   : in     vl_logic
     );
 end RF;

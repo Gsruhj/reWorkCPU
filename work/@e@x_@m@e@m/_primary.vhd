@@ -11,8 +11,6 @@ entity EX_MEM is
         ALU_C_OUT       : out    vl_logic_vector(31 downto 0);
         ZERO_IN         : in     vl_logic;
         ZERO_OUT        : out    vl_logic;
-        jump_in         : in     vl_logic_vector(1 downto 0);
-        jump_out        : out    vl_logic_vector(1 downto 0);
         RT_DATA_IN      : in     vl_logic_vector(31 downto 0);
         INSTR_iN        : in     vl_logic_vector(31 downto 0);
         INSTR_OUT       : out    vl_logic_vector(31 downto 0);

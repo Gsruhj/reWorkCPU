@@ -1,5 +1,5 @@
 module ID_EX (clk, rst, ID_EX_WR,PC_PLUS4_IN,PC_PLUS4_OUT,INSTR_iN,INSTR_OUT,RD1_IN,RD1_OUT,RD2_IN,RD2_OUT,EXT_IN,EXT_OUT,reg_rd_in,reg_rd_out,
-            jump_in,jump_out,RegDst_in,RegDst_out,Branch_in,
+            RegDst_in,RegDst_out,Branch_in,
             Branch_OUT,MemR_in,MemR_out,Mem2R_in,Mem2R_out,MemW_in,MemW_out,RegW_in,RegW_out,
             Alusrc_in,Alusrc_out,EXTOp_in,EXTOp_out,Aluctrl_in,Aluctrl_out,STALL,Flush);
                
@@ -13,7 +13,6 @@ module ID_EX (clk, rst, ID_EX_WR,PC_PLUS4_IN,PC_PLUS4_OUT,INSTR_iN,INSTR_OUT,RD1
    input [31:0] RD2_IN;
    input [31:0] EXT_IN;
    input [4:0] reg_rd_in;
-   input [1:0] jump_in;
    input RegDst_in;
    input MemR_in;
    input Mem2R_in;
@@ -31,7 +30,6 @@ module ID_EX (clk, rst, ID_EX_WR,PC_PLUS4_IN,PC_PLUS4_OUT,INSTR_iN,INSTR_OUT,RD1
     output reg [31:0] RD2_OUT;
     output reg [31:0] EXT_OUT;
     output reg [4:0] reg_rd_out;
-    output reg [1:0] jump_out;
     output reg [1:0] Branch_OUT;
     output reg RegDst_out;
     output reg MemR_out;
@@ -45,7 +43,6 @@ module ID_EX (clk, rst, ID_EX_WR,PC_PLUS4_IN,PC_PLUS4_OUT,INSTR_iN,INSTR_OUT,RD1
    always @(posedge clk or posedge rst) begin
       if ( rst||Flush ) 
         begin
-        jump_out<=0;
         Branch_OUT<=0;
          PC_PLUS4_OUT <= 0;
          INSTR_OUT<= 0;
@@ -65,7 +62,6 @@ module ID_EX (clk, rst, ID_EX_WR,PC_PLUS4_IN,PC_PLUS4_OUT,INSTR_iN,INSTR_OUT,RD1
       else if(STALL)
         begin
         Branch_OUT<=0;
-        jump_out<=0;
          RegDst_out<= 0;
          MemR_out<= 0;
          Mem2R_out<= 0;
@@ -77,7 +73,6 @@ module ID_EX (clk, rst, ID_EX_WR,PC_PLUS4_IN,PC_PLUS4_OUT,INSTR_iN,INSTR_OUT,RD1
         end
       else //if (ID_EX_WR)
         begin
-        jump_out<=jump_in;
         Branch_OUT<=Branch_in;
          PC_PLUS4_OUT <= PC_PLUS4_IN;
          INSTR_OUT<= INSTR_iN;

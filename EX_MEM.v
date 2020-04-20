@@ -1,5 +1,5 @@
 module EX_MEM (clk, rst, EX_MEM_WR, NPC_IN,NPC_OUT,ALU_C_IN,ALU_C_OUT,ZERO_IN,ZERO_OUT,
-                     jump_in,jump_out,RT_DATA_IN,INSTR_iN,INSTR_OUT,RT_DATA_OUT,reg_rd_in,reg_rd_out,Branch_IN,Branch_OUT,
+                     RT_DATA_IN,INSTR_iN,INSTR_OUT,RT_DATA_OUT,reg_rd_in,reg_rd_out,Branch_IN,Branch_OUT,
                 MEMR_IN,MEMR_OUT,MEMW_IN,MEMW_OUT,REGW_IN,REGW_OUT,MEM2R_IN,MEM2R_OUT,Flush);
                
    input         clk;
@@ -8,7 +8,6 @@ module EX_MEM (clk, rst, EX_MEM_WR, NPC_IN,NPC_OUT,ALU_C_IN,ALU_C_OUT,ZERO_IN,ZE
    input Flush;
    input ZERO_IN;
    input [1:0] Branch_IN;
-   input [1:0] jump_in;
    input  [31:0] NPC_IN;
    input  [31:0] ALU_C_IN;
    input  [31:0] RT_DATA_IN;
@@ -21,7 +20,6 @@ module EX_MEM (clk, rst, EX_MEM_WR, NPC_IN,NPC_OUT,ALU_C_IN,ALU_C_OUT,ZERO_IN,ZE
 
   output reg   [31:0] INSTR_OUT;
   output reg ZERO_OUT;
-  output reg [1:0] jump_out;
   output reg [1:0] Branch_OUT;
    output reg  [31:0] NPC_OUT;
    output reg  [31:0] ALU_C_OUT;
@@ -36,8 +34,7 @@ module EX_MEM (clk, rst, EX_MEM_WR, NPC_IN,NPC_OUT,ALU_C_IN,ALU_C_OUT,ZERO_IN,ZE
       if ( rst ||Flush) 
         begin
         ZERO_OUT<=0;
-        jump_out<=0;
-        Branch_OUT<=0;
+                Branch_OUT<=0;
             NPC_OUT<= 0;
             ALU_C_OUT<= 0;
              RT_DATA_OUT<= 0;
@@ -52,7 +49,6 @@ module EX_MEM (clk, rst, EX_MEM_WR, NPC_IN,NPC_OUT,ALU_C_IN,ALU_C_OUT,ZERO_IN,ZE
         begin
         ZERO_OUT<=ZERO_IN;
         Branch_OUT<=Branch_IN;
-        jump_out<=jump_in;
             NPC_OUT<= NPC_IN;
             ALU_C_OUT<= ALU_C_IN;
              RT_DATA_OUT<= RT_DATA_IN;
