@@ -1,3 +1,5 @@
+`include "ctrl_encode_def.v"
+`include "instruction_def.v"
 module mips();
    reg clk, rst;
 //C:/Users/lpdink/Desktop/code.txt
@@ -163,10 +165,10 @@ module mips();
    //if(Branch==2'b01&&Zero)assign PCWr=1;
    //if(Branch==2'b10&&Zero==0)assign PCWr=1;
    //assign PCWr=(((Branch==2'b01&&Zero)||(Branch==2'b10&&Zero==0))==1)?2'b01:2'b00;
-always@(Branch_OUT_EX or ZERO_OUT or jump_out_EX)begin
+always@(Branch_OUT_EX or ZERO_OUT or jump)begin
    if((Branch_OUT_EX==2'b01&&ZERO_OUT)||(Branch_OUT_EX==2'b10&&ZERO_OUT==0)) PCWr=2'b01;
-   else if(Branch_OUT_EX==2'b11&&(jump_out_EX==2'b01||jump_out_EX==2'b10)) PCWr=2'b10;
-   else if(jump_out_EX==2'b11)PCWr=2'b11;
+   else if(jump==2'b01) PCWr=2'b10;
+   else if(jump==2'b11)PCWr=2'b11;
    else  PCWr=2'b00;
    end
    //assign PCWr=((Branch==2'b10&&Zero==0)==1)?1:0;
@@ -258,6 +260,7 @@ always@(Branch_OUT_EX or ZERO_OUT or jump_out_EX)begin
    //CTRL
    assign Op = INSTR_OUT_IF[31:26];
    assign Funct = INSTR_OUT_IF[5:0];
+   assign jump=(Op==`INSTR_J_OP||Op==`INSTR_JAL_OP)?2'b01:((Funct==`INSTR_JR_FUNCT&&Op==`INSTR_RTYPE_OP)?2'b11:2'b00);
   	Ctrl U_Ctrl(.jump(jump),.RegDst(RegDst),.Branch(Branch),.MemR(MemR),.Mem2R(Mem2R)
 				,.MemW(MemW),.RegW(RegW),.Alusrc(Alusrc),.EXTOp(EXTOp),.Aluctrl(Aluctrl)
 				,.OpCode(Op),.Funct(Funct));
@@ -267,7 +270,7 @@ always@(Branch_OUT_EX or ZERO_OUT or jump_out_EX)begin
 
    //assign RS_ID=INSTR_OUT_ID[25:21];
    byPass U_byPass(.clk(clk),.rst(rst), .RD_EX(reg_rd_out_EX), .RS_ID(INSTR_OUT_ID[25:21]),
-                   .RT_ID(INSTR_OUT_IF[20:16]), .RD_MEM(reg_rd_out_MEM),.ForwardA(ForwardA),.ForwardB(ForwardB),
+                   .RT_ID_A3(reg_rd_out_ID),.RT_ID(INSTR_OUT_ID[20:16]), .RD_MEM(reg_rd_out_MEM),.ForwardA(ForwardA),.ForwardB(ForwardB),
                    .Alusrc(Alusrc_out),.rt(rt),.instr_if(INSTR_OUT_IF),.ForwardC(ForwardC));
    //阻塞
    bubble U_bubble(.clk(clk),.rst(rst), .MEMR_ID(MemR), .RT_ID(INSTR_OUT_ID[20:16]),

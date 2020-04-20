@@ -6,6 +6,7 @@ entity byPass is
         rst             : in     vl_logic;
         RD_EX           : in     vl_logic_vector(4 downto 0);
         RS_ID           : in     vl_logic_vector(4 downto 0);
+        RT_ID_A3        : in     vl_logic_vector(4 downto 0);
         RT_ID           : in     vl_logic_vector(4 downto 0);
         RD_MEM          : in     vl_logic_vector(4 downto 0);
         ForwardA        : out    vl_logic_vector(1 downto 0);

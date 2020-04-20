@@ -41,7 +41,7 @@ Z5 OE;L;10.1a;51
 Z6 o-work work -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
 !s100 h>`;^6ianmhf^kdKbeXdF3
 !s90 -reportprogress|300|-work|work|-vopt|C:/appProjects/modelsimProject/alu.v|
-!s108 1587307905.606000
+!s108 1587386305.002000
 !s107 ctrl_encode_def.v|C:/appProjects/modelsimProject/alu.v|
 !i10b 1
 !s85 0
@@ -59,26 +59,26 @@ R5
 R6
 !s100 Tnk4YiLU>@oC4EGkBTR4z0
 !s90 -reportprogress|300|-work|work|-vopt|C:/appProjects/modelsimProject/bubble.v|
-!s108 1587307906.797000
+!s108 1587386306.096000
 !s107 C:/appProjects/modelsimProject/bubble.v|
 !i10b 1
 !s85 0
 vbyPass
-VL9`T<hGRdGEi_:h=<=FRC2
+Vh?hWQ8dledd?Q5ga<TAQ>0
 r1
 31
-I9Gb44>QBS16Offm6W7YVB3
+Ig`0hg>X6>Y30gOM^oEkLm0
 R4
-w1587303129
+w1587386292
 8C:/appProjects/modelsimProject/byPass.v
 FC:/appProjects/modelsimProject/byPass.v
 L0 1
 R5
 R6
 nby@pass
-!s100 8;9mAfoW6I2ETLWOR:[;P1
 !s90 -reportprogress|300|-work|work|-vopt|C:/appProjects/modelsimProject/byPass.v|
-!s108 1587307906.869000
+!s100 fTP?MnYAoF;S2`7BCzij23
+!s108 1587386306.161000
 !s107 C:/appProjects/modelsimProject/byPass.v|
 !i10b 1
 !s85 0
@@ -97,7 +97,7 @@ R6
 n@ctrl
 !s100 Y9;bM2`gdg`i0I:LZ1AaH3
 !s90 -reportprogress|300|-work|work|-vopt|C:/appProjects/modelsimProject/ctrl.v|
-!s108 1587307905.670000
+!s108 1587386305.064000
 !s107 instruction_def.v|ctrl_encode_def.v|C:/appProjects/modelsimProject/ctrl.v|
 !i10b 1
 !s85 0
@@ -115,7 +115,7 @@ R5
 R6
 !s100 7_g`19ZiKGPlUCf`;F;?d3
 !s90 -reportprogress|300|-work|work|-vopt|C:/appProjects/modelsimProject/dm.v|
-!s108 1587307905.780000
+!s108 1587386305.170000
 !s107 C:/appProjects/modelsimProject/dm.v|
 !i10b 1
 !s85 0
@@ -132,9 +132,9 @@ L0 1
 R5
 R6
 n@e@x_@m@e@m
-!s90 -reportprogress|300|-work|work|-vopt|C:/appProjects/modelsimProject/EX_MEM.v|
 !s100 eSb[P]3Q01n=BUjd`2[k]3
-!s108 1587307906.512000
+!s90 -reportprogress|300|-work|work|-vopt|C:/appProjects/modelsimProject/EX_MEM.v|
+!s108 1587386305.848000
 !s107 C:/appProjects/modelsimProject/EX_MEM.v|
 !i10b 1
 !s85 0
@@ -153,7 +153,7 @@ R6
 n@e@x@t
 !s100 8;aj77?4i7;m12ODXGlB;2
 !s90 -reportprogress|300|-work|work|-vopt|C:/appProjects/modelsimProject/EXT.v|
-!s108 1587307905.848000
+!s108 1587386305.236000
 !s107 ctrl_encode_def.v|C:/appProjects/modelsimProject/EXT.v|
 !i10b 1
 !s85 0
@@ -170,9 +170,9 @@ L0 1
 R5
 R6
 n@i@d_@e@x
-!s90 -reportprogress|300|-work|work|-vopt|C:/appProjects/modelsimProject/ID_EX.v|
 !s100 2ZCG4]IRn4MD<oaJTia661
-!s108 1587307906.587000
+!s90 -reportprogress|300|-work|work|-vopt|C:/appProjects/modelsimProject/ID_EX.v|
+!s108 1587386305.910000
 !s107 C:/appProjects/modelsimProject/ID_EX.v|
 !i10b 1
 !s85 0
@@ -180,18 +180,18 @@ vIF_ID
 V?ZLWz>N6:B3Oi4_;f?U[T0
 r1
 31
-IZh@^8gM1TK4cIJ56QIgoM3
+IKn?UTRWV<_19M@mBKIl:c1
 R4
-w1587277361
+w1587308799
 8C:/appProjects/modelsimProject/IF_ID.v
 FC:/appProjects/modelsimProject/IF_ID.v
 L0 1
 R5
 R6
 n@i@f_@i@d
-!s100 =ilBjDozU1c5cWiOdSnca0
+!s100 XZjkdHX]@DG9]176^85af0
 !s90 -reportprogress|300|-work|work|-vopt|C:/appProjects/modelsimProject/IF_ID.v|
-!s108 1587307906.661000
+!s108 1587386305.972000
 !s107 C:/appProjects/modelsimProject/IF_ID.v|
 !i10b 1
 !s85 0
@@ -209,7 +209,7 @@ R5
 R6
 !s100 QbzzX?AH4[k0hO9@SIH4G0
 !s90 -reportprogress|300|-work|work|-vopt|C:/appProjects/modelsimProject/im.v|
-!s108 1587307905.922000
+!s108 1587386305.300000
 !s107 C:/appProjects/modelsimProject/im.v|
 !i10b 1
 !s85 0
@@ -228,7 +228,7 @@ R6
 n@i@r
 !s100 b]^g]@P4P7mlABSlIUH080
 !s90 -reportprogress|300|-work|work|-vopt|C:/appProjects/modelsimProject/IR.v|
-!s108 1587307906.033000
+!s108 1587386305.408000
 !s107 C:/appProjects/modelsimProject/IR.v|
 !i10b 1
 !s85 0
@@ -247,7 +247,7 @@ R6
 n@m@e@m_@w@b
 !s100 U?`Um0lheO6<Q=EN^>c7o2
 !s90 -reportprogress|300|-work|work|-vopt|C:/appProjects/modelsimProject/MEM_WB.v|
-!s108 1587307906.731000
+!s108 1587386306.035000
 !s107 C:/appProjects/modelsimProject/MEM_WB.v|
 !i10b 1
 !s85 0
@@ -257,18 +257,18 @@ VXXMLPNhMZgRT<hIE6`9Zl2
 r1
 !s85 0
 31
-ID1KnZW2ALW:JdZX`bmHXf2
+IG=l0[[QmD84B6W9Eg3co]1
 R4
-w1587308377
-8C:\appProjects\modelsimProject\mips.v
-FC:\appProjects\modelsimProject\mips.v
-L0 1
+w1587387848
+8C:/appProjects/modelsimProject/mips.v
+FC:/appProjects/modelsimProject/mips.v
+L0 3
 R5
-!s90 -reportprogress|300|-work|work|-vopt|C:\appProjects\modelsimProject\mips.v|
+!s90 -reportprogress|300|-work|work|-vopt|C:/appProjects/modelsimProject/mips.v|
 R6
-!s100 imPn?_=mKUjKkI95aZ[az3
-!s108 1587308380.493000
-!s107 C:\appProjects\modelsimProject\mips.v|
+!s100 l0KW7E[S?RTQ@mj]h>YgF0
+!s108 1587387852.056000
+!s107 instruction_def.v|ctrl_encode_def.v|C:/appProjects/modelsimProject/mips.v|
 vmips_tb
 IXm[I:>KD5JPT:FM=Me9Pn1
 VHfL@J;=TiSmbe>@j83EoJ0
@@ -283,7 +283,7 @@ r1
 R6
 !s100 S7:9zD9_nln8Z4I__YCCU2
 !s90 -reportprogress|300|-work|work|-vopt|C:/appProjects/modelsimProject/mips_tb.v|
-!s108 1587307906.173000
+!s108 1587386305.543000
 !s107 C:/appProjects/modelsimProject/mips_tb.v|
 !i10b 1
 !s85 0
@@ -298,7 +298,7 @@ L0 71
 R5
 r1
 31
-Z10 !s108 1587307906.240000
+Z10 !s108 1587386305.608000
 Z11 !s107 C:/appProjects/modelsimProject/mux.v|
 Z12 !s90 -reportprogress|300|-work|work|-vopt|C:/appProjects/modelsimProject/mux.v|
 R6
@@ -374,7 +374,7 @@ R6
 n@p@c
 !s100 JHDMhgcgimQ>2dn5Z@j<X2
 !s90 -reportprogress|300|-work|work|-vopt|C:/appProjects/modelsimProject/PC.v|
-!s108 1587307906.381000
+!s108 1587386305.717000
 !s107 C:/appProjects/modelsimProject/PC.v|
 !i10b 1
 !s85 0
@@ -393,7 +393,7 @@ R6
 n@r@f
 !s100 `]`<<_QI_COoIH;6_dM5g1
 !s90 -reportprogress|300|-work|work|-vopt|C:/appProjects/modelsimProject/RF.v|
-!s108 1587307906.447000
+!s108 1587386305.783000
 !s107 C:/appProjects/modelsimProject/RF.v|
 !i10b 1
 !s85 0

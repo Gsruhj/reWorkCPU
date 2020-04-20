@@ -1,9 +1,10 @@
-module byPass(clk,rst, RD_EX, RS_ID, RT_ID, RD_MEM,ForwardA,ForwardB,Alusrc,rt,instr_if,ForwardC);
+module byPass(clk,rst, RD_EX, RS_ID, RT_ID_A3,RT_ID, RD_MEM,ForwardA,ForwardB,Alusrc,rt,instr_if,ForwardC);
 
     input clk;
     input rst;
     input Alusrc;
     input [4:0] RS_ID;
+    input [4:0] RT_ID_A3;
     input [4:0] RT_ID;
     input [4:0] RD_EX;
     input [4:0] RD_MEM;
@@ -33,7 +34,9 @@ module byPass(clk,rst, RD_EX, RS_ID, RT_ID, RD_MEM,ForwardA,ForwardB,Alusrc,rt,i
         end
         else ForwardA=2'b00;
         if(rst)ForwardC=0;
-        if(RT_ID==rt && instr_if[31:26]==6'b101011) ForwardC=1;
+        if(RT_ID_A3==rt && instr_if[31:26]==6'b101011) ForwardC=1;
+        //if(RT_ID==rt) ForwardC=1;
+        else ForwardC=0;
     end
 
     //always@(posedge clk)
